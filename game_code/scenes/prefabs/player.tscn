@@ -10,35 +10,39 @@ export(float) var player_hight :float = 1.0 + (1.0 / 2.0)
 
 var count :float = 0.0
 var on_floor :bool = true
-var i_pos : Vector3
-var j_dir :float = 0.0
-var last_j_dir :int = 0
+var i_pos : float
+var f_pos :float = 0.0
 
 func _ready():
-	i_pos = $on_floor.get_collision_point() + Vector3.UP * $mesh.get_aabb().size
+	$on_floor.force_raycast_update()
+	i_pos =  $on_floor.get_collision_point().y  + ($mesh.get_transformed_aabb().size/2.0).y
 
 func _unhandled_input(event):
 	if event is InputEventScreenTouch and not event.is_pressed():
+		$on_floor.transform.origin.z = -distance
+		i_pos = $on_floor.get_collision_point().y  + ($mesh.get_transformed_aabb().size/2.0).y
 		jump()
 
-
 func _process(delta):
+	i_pos =  $on_floor.get_collision_point().y  + ($mesh.get_transformed_aabb().size/2.0).y
 	anim_jump(delta)
+#	if not (i_pos - f_pos < 0.9):
+#		print(str(i_pos) + \" \" + str(i_pos + f_pos))
 
 func anim_jump(var delta: float):
 	if not on_floor:
 		if count > distance:
 			count = 0
-			i_pos = $on_floor.get_collision_point()
 			on_floor = true
+
+		var value_higth :float = ((hight)/pow(distance/2.0, 2.0))
+
+		var function_squary =  -pow((count),2.0) + distance * (count)
+
+		f_pos = value_higth * function_squary 
 		
-		var value_higth :float = (hight/pow(distance/2.0, 2.0))
+		transform.origin.y = i_pos + f_pos
 		
-		var function_squary =  -pow((count),2.0) + (distance + $on_floor.get_collision_point().distance_to(i_pos)) * (count)
-		print(function_squary)
-		j_dir = value_higth * function_squary
-		
-		transform.origin.y = j_dir
 		count += delta * speed
 
 func jump():
@@ -48,9 +52,8 @@ func jump():
 [sub_resource type="CapsuleMesh" id=1]
 
 [node name="player" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 script = SubResource( 5 )
-speed = 1.0
+speed = 0.5
 hight = 8.0
 
 [node name="mesh" type="MeshInstance" parent="."]
