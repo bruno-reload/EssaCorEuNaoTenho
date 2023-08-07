@@ -33,19 +33,22 @@ func anim_jump(var delta: float):
 	if not on_floor:
 		count += speed * delta
 		
-		s_f = $on_floor.get_collision_point().y  + pivot_y
-		
 		var h = hight / pow(distance/2.0,2.0)
 		var sqr = distance * count -pow(count , 2.0)
 		
 		transform.origin.y = s_i + sqr * h
-		var d = $on_floor.get_collision_point().distance_to((transform.origin.y - pivot_y) * Vector3.UP)
 
 		if transform.origin.y - pivot_y - $on_floor.get_collision_point().y < 0.1:
 			on_floor = true
 			count = 0
-	elif  transform.origin.y - pivot_y - $on_floor.get_collision_point().y > 0.1:
-		s_f -= gravity * delta
+		print_debug(\"not on floor\")
+	else:
+		if  transform.origin.y - pivot_y - $on_floor.get_collision_point().y > 0.1:
+			s_f -= gravity * delta
+			print_debug(\"in grabity\")
+		elif not $on_floor.get_collider() == null:
+			s_f = $on_floor.get_collision_point().y  + pivot_y
+			print_debug(\"update space final\")
 		transform.origin.y = s_f
 
 func jump():
