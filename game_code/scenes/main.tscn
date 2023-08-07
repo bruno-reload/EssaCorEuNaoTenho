@@ -6,10 +6,10 @@
 [sub_resource type="GDScript" id=9]
 script/source = "extends Area
 
+export(float) var speed = 5
+
 func _process(delta):
-	if Input.is_action_pressed(\"ui_up\"):
-		$CollisionShape.disabled = false
-		show()
+	transform.origin.z += delta * speed
 "
 
 [sub_resource type="BoxShape" id=7]
@@ -39,21 +39,19 @@ background_mode = 4
 [node name="scene" type="Spatial" parent="."]
 
 [node name="player" parent="scene" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.72879, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
 
 [node name="Camera" type="Camera" parent="scene"]
-transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0.170224, 10.005 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.91688, 10.005 )
 
-[node name="Area" type="Area" parent="scene"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -8.8714 )
-visible = false
+[node name="bloco" type="Area" parent="scene"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -22.4075 )
 script = SubResource( 9 )
 
-[node name="CollisionShape" type="CollisionShape" parent="scene/Area"]
+[node name="CollisionShape" type="CollisionShape" parent="scene/bloco"]
 shape = SubResource( 7 )
-disabled = true
 
-[node name="MeshInstance" type="MeshInstance" parent="scene/Area"]
+[node name="MeshInstance" type="MeshInstance" parent="scene/bloco"]
 mesh = SubResource( 8 )
 
 [node name="road" type="Spatial" parent="scene"]
@@ -62,13 +60,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 [node name="mesh" type="MeshInstance" parent="scene/road"]
 mesh = SubResource( 2 )
 
-[node name="Area" type="Area" parent="scene/road"]
+[node name="road" type="Area" parent="scene/road"]
 
-[node name="CollisionShape" type="CollisionShape" parent="scene/road/Area"]
+[node name="CollisionShape" type="CollisionShape" parent="scene/road/road"]
 shape = SubResource( 6 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="scene"]
-transform = Transform( 0.614065, 0.566056, -0.550004, 0, 0.696865, 0.717203, 0.789256, -0.440409, 0.42792, 0, -2.4379, 0 )
+transform = Transform( -0.0219022, 0.71703, -0.696698, 0, 0.696865, 0.717202, 0.99976, 0.0157083, -0.0152629, 0, -2.4379, 0 )
+shadow_enabled = true
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
