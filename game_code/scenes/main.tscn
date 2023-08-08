@@ -42,10 +42,10 @@ background_mode = 4
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
 
 [node name="Camera" type="Camera" parent="scene"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.91688, 10.005 )
+transform = Transform( 1, 0, 0, 0, 0.931132, 0.364682, 0, -0.364682, 0.931132, 0, 8.66476, 8.22254 )
 
 [node name="bloco" type="Area" parent="scene"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -22.4075 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -16.3543 )
 script = SubResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="scene/bloco"]
@@ -67,7 +67,6 @@ shape = SubResource( 6 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="scene"]
 transform = Transform( -0.0219022, 0.71703, -0.696698, 0, 0.696865, 0.717202, 0.99976, 0.0157083, -0.0152629, 0, -2.4379, 0 )
-shadow_enabled = true
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
