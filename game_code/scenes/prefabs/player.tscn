@@ -3,10 +3,10 @@
 [sub_resource type="GDScript" id=2]
 script/source = "extends Spatial
 
-export(float) var speed :float = 3.0 
+export(float) var jump_speed :float = 3.0 
 export(float) var hight :float = 4.0
+export(Vector2) var axes_speed :Vector2 = Vector2(10.0,10.0)
 export(Vector3) var distance :Vector3 = Vector3(2.0, 1.0,0.0)
-export(float) var max_grad :float = 25.0
 
 onready var tween = $Tween
 var count :float = 0.0
@@ -14,10 +14,8 @@ var on_floor :bool = true
 var s_i : float = 0.0
 var s_f :float = 0.0
 var pivot_y :float = 0.0
-var start : Vector2 = Vector2.LEFT 
-var end : Vector2 =  Vector2.LEFT 
+var start : Vector2 = Vector2.ZERO 
 var dir :Vector2 = Vector2.ZERO
-var step :int = 0
 
 const gravity :float  = 9.8
 
@@ -29,44 +27,41 @@ func _ready():
 	s_f = s_i 
 
 func _unhandled_input(event):
-	if event is InputEventScreenTouch:
-		if event.is_pressed():
-			start = event.position
-			print(\"pressed \" + str(start) + \" \" + str(end))
-		if not event.is_pressed():
-			end = event.position
-			print(\"release \" + str(start) + \" \" + str(end))
-		if(abs(start.x - end.x) < 20.0 and not start.x == -1 and not end.x == -1):
-			jump()
-			dir.x = 0
-	if event is InputEventScreenDrag :
-		if start.x > end.x:
-			move_left()
-		elif start.x <= end.x:
-			move_right()
-		horizontal_moviment()
+	if event is InputEventScreenTouch and event.is_pressed():
+		start = event.position
+	if event is InputEventScreenDrag:
+		if event.relative.length() > 10:
+			var teta = rad2deg(event.relative.angle_to(Vector2.UP))
+			if teta >  45 and teta < 135:
+				move_left()
+			elif teta < -45 and teta > -135:
+				move_right()
+			elif teta <  45 and teta > -45:
+				jump()
+			else:
+				swipe()
+	
 
 func _process(delta):
 	anim_jump(delta)
 
 func horizontal_moviment():
-	print(\"##----\"+str(start) + \" \" + str(end))
-	if start.x >= 0.0 and  end.x >= 0.0:
+	if start.x > 0.0 and on_floor:
 		tween.interpolate_property(self,\"translation:x\",transform.origin.x, transform.origin.x + dir.x * distance.x, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT )
 		tween.start()
-		start.x = -1.0
-		end.x = start.x 
-		print(\"foi\")
+		start.x = 0.0
 
 func move_left():
 	dir.x = -1
+	horizontal_moviment()
 
 func move_right():
 	dir.x = 1
+	horizontal_moviment()
 
 func anim_jump(var delta: float):
 	if not on_floor:
-		count += speed * delta
+		count += jump_speed * delta
 		
 		var h = hight / pow(distance.y/2.0,2.0)
 		var sqr = distance.y * count -pow(count , 2.0)
@@ -86,13 +81,16 @@ func anim_jump(var delta: float):
 func jump():
 	on_floor = false
 	s_i = s_f
+
+func swipe():
+	print_debug(\"deslisou\")
+	pass
 "
 
 [sub_resource type="CapsuleMesh" id=1]
 
 [node name="player" type="Spatial"]
 script = SubResource( 2 )
-speed = 0.0
 
 [node name="mesh" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
