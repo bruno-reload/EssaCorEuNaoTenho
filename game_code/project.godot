@@ -14,6 +14,10 @@ config/name="EssaCorEuNaoTenho"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameParam="*res://scripts/game_param.gd"
+
 [display]
 
 window/size/width=480
