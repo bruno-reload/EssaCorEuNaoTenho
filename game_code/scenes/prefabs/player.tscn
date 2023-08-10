@@ -27,6 +27,7 @@ var h_move :bool = false
 var jump_top :bool = false
 var jump_up :bool = false
 var jump_down :bool = false
+var jump_count :int = 0
 
 const gravity :float  = -9.8
 
@@ -58,7 +59,7 @@ func _unhandled_input(event):
 func _process(delta):
 	$on_floor.global_transform.origin = -$on_floor.cast_to/2.0 + global_transform.origin * Vector3(1.0, 0.0, 1.0)
 	anim_jump(delta)
-#	anim_horizontal(delta)
+	anim_horizontal(delta)
 	
 	var d = get_viewport().get_camera().transform.origin - transform.origin
 	var p = get_viewport().get_camera().project_position(get_viewport().get_mouse_position(), d.length())
@@ -92,14 +93,19 @@ func anim_horizontal(var delta: float):
 
 func anim_jump(var delta: float):
 	if not on_floor:
-		if jumping: 
+		if jumping and jump_count < 3:
 			count += jump_speed * delta
 			
 			var h = hight / pow(distance.z/2.0,2.0)
 			var sqr = distance.z * count -pow(count , 2.0)
 			
 			s_f = s_i + sqr * h 
-#			avaliable_jump_dir(hight - sqr * h, (distance.z/2.0) - count)
+			avaliable_jump_dir(hight - sqr * h, (distance.z/2.0) - count)
+			
+			if jump_down and jump_count == 2:
+				count = 0
+				s_f = transform.origin.y - pivot.y
+				jump_count += 1
 			
 #			posteriormente passa a proxima linha para um valor inteiro
 #			dessa forma posso garatir que um valor contudo devo usar modelos com valores inteiros tbm
@@ -107,6 +113,8 @@ func anim_jump(var delta: float):
 			if s_f <= $on_floor.get_collision_point().y + pivot.y:
 				s_f = $on_floor.get_collision_point().y + pivot.y
 				last_s_f = s_f
+				jump_count = 0
+				on_floor = true
 		else:
 			if transform.origin.y - pivot.y >= $on_floor.get_collision_point().y:
 				s_f = transform.origin.y - jump_speed * count + gravity * pow(count,2.0)/2.0 
@@ -114,8 +122,12 @@ func anim_jump(var delta: float):
 				if s_f <= $on_floor.get_collision_point().y + pivot.y:
 					s_f = $on_floor.get_collision_point().y + pivot.y
 					last_s_f = s_f
+					on_floor = true
+					jump_count = 0
 			pass
 		transform.origin.y = s_f 
+	else:
+		jump_count = 0
 	
 
 func avaliable_jump_dir(top, dir):
@@ -128,7 +140,6 @@ func avaliable_jump_dir(top, dir):
 
 func _on_area_entered(area):
 	count = 0.0
-	on_floor = true
 	jumping = false
 	
 	jump_top = false
@@ -137,6 +148,7 @@ func _on_area_entered(area):
 
 func _on_area_exited(area):
 	on_floor = false
+
 "
 
 [sub_resource type="CapsuleMesh" id=1]
@@ -150,8 +162,8 @@ extents = Vector3( 1, 1.5, 1 )
 
 [node name="player" type="Spatial"]
 script = SubResource( 2 )
-jump_speed = 0.1
-axes_speed = Vector2( 100, 100 )
+destiny = 4.0
+jump_speed = 2.0
 distance = Vector3( 0, 0, 2 )
 
 [node name="mesh" type="MeshInstance" parent="."]
