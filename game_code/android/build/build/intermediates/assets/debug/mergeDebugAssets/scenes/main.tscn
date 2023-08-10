@@ -8,8 +8,8 @@ script/source = "extends Area
 
 export(float) var speed = 5
 
-#func _process(delta):
-#	transform.origin.z += delta * speed
+func _process(delta):
+	transform.origin.z += delta * speed
 "
 
 [sub_resource type="BoxShape" id=7]
@@ -36,20 +36,19 @@ func _process(delta):
 "
 
 [sub_resource type="Environment" id=4]
-background_mode = 4
 
 [node name="main" type="Node"]
 
 [node name="scene" type="Spatial" parent="."]
 
 [node name="player" parent="scene" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2.87438 )
 
 [node name="Camera" type="Camera" parent="scene"]
-transform = Transform( 1, 0, 0, 0, 0.931132, 0.364682, 0, -0.364682, 0.931132, 0, 8.66476, 8.22254 )
+transform = Transform( 1, 0, 0, 0, 0.996207, -0.0870164, 0, 0.0870164, 0.996207, 0, 2.01735, 8.22254 )
 
 [node name="bloco" type="Area" parent="scene"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -5.30516 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -25.7795 )
 script = SubResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="scene/bloco"]
@@ -94,6 +93,7 @@ environment = SubResource( 4 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
 
 [node name="Control" type="Control" parent="CanvasLayer/ParallaxBackground"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2

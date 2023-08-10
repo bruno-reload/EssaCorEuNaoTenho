@@ -45,7 +45,7 @@ func _process(delta):
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2.87438 )
 
 [node name="Camera" type="Camera" parent="scene"]
-transform = Transform( 1, 0, 0, 0, 0.931132, 0.364682, 0, -0.364682, 0.931132, 0, 8.66476, 8.22254 )
+transform = Transform( 1, 0, 0, 0, 0.996207, -0.0870164, 0, 0.0870164, 0.996207, 0, 2.01735, 8.22254 )
 
 [node name="bloco" type="Area" parent="scene"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -25.7795 )
