@@ -16,6 +16,7 @@ var dir :Vector2 = Vector2.ZERO
 var count :float = 0.0
 var s_i : float = 0.0
 var s_f :float = 0.0
+var last_s_f :float = 0.0
 var count_destiny :float = 0.0
 var pressed :bool = false
 var count_line :int = 0
@@ -26,14 +27,17 @@ var h_move :bool = false
 var jump_top :bool = false
 var jump_up :bool = false
 var jump_down :bool = false
+var jump_count :int = 0
+var slide :bool = false
 
-const gravity :float  = 9.8
+const gravity :float  = -9.8
 
 func _ready():
 	$on_floor.force_raycast_update()
 	pivot = $mesh.get_transformed_aabb().size/2.0
 	s_i =  $on_floor.get_collision_point().y + pivot.y
-	s_f = s_i 
+	s_f = s_i
+	last_s_f = s_i 
 
 func _unhandled_input(event):
 	if event is InputEventScreenTouch and event.is_pressed():
@@ -54,8 +58,9 @@ func _unhandled_input(event):
 			pressed = false
 
 func _process(delta):
+	$on_floor.global_transform.origin = -$on_floor.cast_to/2.0 + global_transform.origin * Vector3(1.0, 0.0, 1.0)
 	anim_jump(delta)
-#	anim_horizontal(delta)
+	anim_horizontal(delta)
 	
 	var d = get_viewport().get_camera().transform.origin - transform.origin
 	var p = get_viewport().get_camera().project_position(get_viewport().get_mouse_position(), d.length())
@@ -68,9 +73,12 @@ func move_right():
 	dir.x = 1
 
 func jump():
-	jumping = true
-	on_floor = false
-	s_i = s_f
+	if jump_count < 3:
+		count = 0.0
+		jumping = true
+		jump_count += 1
+		on_floor = false
+		s_i = last_s_f
 
 func swipe():
 	print_debug(\"deslisou\")
@@ -88,19 +96,40 @@ func anim_horizontal(var delta: float):
 
 func anim_jump(var delta: float):
 	if not on_floor:
-#		if jumping: 
-#			count += jump_speed * delta
-#
-#			var h = hight / pow(distance.z/2.0,2.0)
-#			var sqr = distance.z * count -pow(count , 2.0)
-#			transform.origin.y = s_i + sqr * h
-#
-#			avaliable_jump_dir(hight - sqr * h, (distance.z/2.0) - count)
-#
-#			s_f = $on_floor.get_collision_point().y + pivot.y
-#		else:
-#			s_f -= gravity * delta
-		transform.origin.y = s_f
+		if jumping:
+			
+			if not h_move:
+				count += jump_speed * delta
+			
+			var h :float =  0.0 
+			var sqr :float = 0.0
+			if jump_count == 2:
+				h = (hight * 2.0) / pow(distance.z/2.0,2.0)
+				jump_count += 1
+				s_i = transform.origin.y + pivot.y
+			else:
+				h = hight / pow(distance.z/2.0,2.0)
+				sqr = distance.z * count -pow(count , 2.0)
+				s_f = s_i + sqr * h 
+			
+			if s_f <= $on_floor.get_collision_point().y + pivot.y:
+				s_f = $on_floor.get_collision_point().y + pivot.y
+				last_s_f = s_f
+				jump_count = 0
+		else:
+			if transform.origin.y - pivot.y >= $on_floor.get_collision_point().y:
+				
+				if not h_move:
+					s_f = transform.origin.y - jump_speed * count + gravity * pow(count,2.0)/2.0 
+					count += delta
+				if s_f <= $on_floor.get_collision_point().y + pivot.y:
+					s_f = $on_floor.get_collision_point().y + pivot.y
+					last_s_f = s_f
+					jump_count = 0
+					count = 0
+			pass
+		transform.origin.y = s_f 
+	
 
 func avaliable_jump_dir(top, dir):
 	if top == 0.0:
@@ -111,15 +140,14 @@ func avaliable_jump_dir(top, dir):
 		jump_down = true
 
 func _on_area_entered(area):
+	jump_count = 0
+	count = 0.0
 	on_floor = true
 	jumping = false
-	count = 0.0
 	
 	jump_top = false
 	jump_up = false
 	jump_down = false
-	
-	
 
 func _on_area_exited(area):
 	on_floor = false
@@ -136,6 +164,9 @@ extents = Vector3( 1, 1.5, 1 )
 
 [node name="player" type="Spatial"]
 script = SubResource( 2 )
+destiny = 4.0
+jump_speed = 5.0
+axes_speed = Vector2( 50, 10 )
 distance = Vector3( 0, 0, 2 )
 
 [node name="mesh" type="MeshInstance" parent="."]
@@ -144,6 +175,7 @@ mesh = SubResource( 1 )
 
 [node name="head" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+visible = false
 enabled = true
 cast_to = Vector3( 0, 10, 0 )
 collide_with_areas = true
@@ -152,12 +184,13 @@ debug_shape_custom_color = Color( 0, 0.156863, 1, 1 )
 
 [node name="on_floor" type="RayCast" parent="."]
 enabled = true
-cast_to = Vector3( 0, -10, 0 )
+cast_to = Vector3( 0, -50, 0 )
 collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color( 1, 0, 0, 1 )
 
 [node name="forward" type="RayCast" parent="."]
+visible = false
 enabled = true
 cast_to = Vector3( 0, 0, -10 )
 collide_with_areas = true
@@ -166,6 +199,7 @@ debug_shape_custom_color = Color( 0.290196, 1, 0, 1 )
 
 [node name="left" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+visible = false
 enabled = true
 cast_to = Vector3( -10, 0, 0 )
 collide_with_areas = true
@@ -174,6 +208,7 @@ debug_shape_custom_color = Color( 1, 0.494118, 0, 1 )
 
 [node name="right" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+visible = false
 enabled = true
 cast_to = Vector3( 10, 0, 0 )
 collide_with_areas = true
