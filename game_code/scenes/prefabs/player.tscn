@@ -83,7 +83,7 @@ func punishment(var delta :float):
 	if not $forward.get_collider() == null:
 		frontal_collision = $forward.get_collision_point().z - transform.origin.z + pivot.z > 0.0
 		var fontal_collider_shape = $forward.get_collider().shape_owner_get_owner($forward.get_collider_shape())
-		print((fontal_collider_shape as CollisionShape).shape.extents.y - )
+#		print((fontal_collider_shape as CollisionShape).shape.extents.y - )
 		sido_of_front_colision = transform.origin.y - pivot.y > $forward.get_collision_point().y and fontal_collider_shape
 		
 	if frontal_collision:
@@ -185,12 +185,7 @@ extents = Vector3( 1, 1.5, 1 )
 
 [node name="player" type="Spatial"]
 script = SubResource( 2 )
-hight = null
-destiny = null
-dragging_magnitude = null
-axes_speed = null
 distance = Vector3( 0, 0, 2 )
-line = null
 
 [node name="mesh" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
