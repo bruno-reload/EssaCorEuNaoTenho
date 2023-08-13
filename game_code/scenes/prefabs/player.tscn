@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends Spatial
@@ -9,6 +9,7 @@ export(float) var dragging_magnitude :float = 10.0
 export(Vector2) var axes_speed :Vector2 = Vector2(6.0,3.0)
 export(Vector3) var distance :Vector3 = Vector3(2.0, 1.0,0.0)
 export(int) var line :int = 3
+export(int) var i = 0
 
 var pivot :Vector3 = Vector3.ZERO
 var dir :Vector2 = Vector2.ZERO
@@ -30,6 +31,7 @@ var jump_count :int = 0
 var slide :bool = false
 
 const gravity :float  = -9.8
+enum OPT_AXES {x, y, z}
 
 func _ready():
 	
@@ -80,17 +82,62 @@ func move_right():
 func punishment(var delta :float):
 	var frontal_collision :bool  = false
 	var sido_of_front_colision :bool = false
+	
+	cover_surface(OPT_AXES.z)
+		
 	if not $forward.get_collider() == null:
+		var target = $forward.get_collider().shape_owner_get_owner($forward.get_collider_shape())
+		var extents = target.shape.extents
+		
+#		var rect1 = build_rect(OPT_AXES.z, transform.origin, $Area/CollisionShape.shape.extents)
+#		var rect2 = build_rect(OPT_AXES.z, target.transform.origin, extents)
+		
 		frontal_collision = $forward.get_collision_point().z - transform.origin.z + pivot.z > 0.0
-		var fontal_collider_shape = $forward.get_collider().shape_owner_get_owner($forward.get_collider_shape())
-#		print((fontal_collider_shape as CollisionShape).shape.extents.y - )
-		sido_of_front_colision = transform.origin.y - pivot.y > $forward.get_collision_point().y and fontal_collider_shape
+		sido_of_front_colision = transform.origin.y - pivot.y > $forward.get_collision_point().y and target
 		
 	if frontal_collision:
 		frontal_collision = false
 		GameParam.speed = 0
-		pass
-	pass
+
+func cover_surface(var axes :int) -> Vector3:
+	var rect :Rect2 = build_rect(axes,global_transform.origin, $Area/CollisionShape.shape.extents)
+	var list = [rect.position + Vector2(0.2,0.2),rect.position + rect.size * Vector2.UP + Vector2(0.2,-0.2), rect.position + rect.size * Vector2.RIGHT  + Vector2(-0.2,0.2), rect.position + rect.size - Vector2(0.2,0.2)]
+	var value : Vector3 = Vector3.ZERO
+	match axes:
+		0:
+			for pos in list:
+#				$forward.global_transform.origin = Vector3($forward.global_transform.origin.x, pos.x, pos.y)
+				pass
+				
+		1: 
+			for pos in list:
+#				$forward.global_transform.origin = Vector3(pos.x, $forward.global_transform.origin.y, pos.y)
+				pass
+		2:
+			for pos in list:
+				$forward.global_transform.origin = Vector3(list[i].x, list[i].y, $forward.global_transform.origin.z)
+				if not $forward.get_collider() == null:
+#					value = $forward.get_collision_point()
+					pass
+	return value
+
+func build_rect(var axes :int, var value0 :Vector3, var value1 : Vector3, var center :bool = true):
+	var position :Vector2 = Vector2.ZERO
+	var extents :Vector2 = Vector2.ZERO
+	var centered :float  = 0.0
+	if not center:
+		centered  = 0.5
+	match axes:
+		0:
+			extents = Vector2(value1.z, value1.y)
+			position = Vector2(value0.z - extents.x * centered, value0.y - extents.y * centered)
+		1: 
+			extents = Vector2(value1.x, value1.z)
+			position = Vector2(value0.x - extents.x * centered, value0.z - extents.y * centered)
+		2:
+			extents = Vector2(value1.x, value1.y)
+			position = Vector2(value0.x - extents.x * centered, value0.y - extents.y * centered)
+	return Rect2(position, extents)
 
 func jump():
 	if jump_count < 3:
@@ -174,7 +221,12 @@ func _on_area_exited(area):
 	on_floor = false
 "
 
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+albedo_color = Color( 1, 1, 1, 0.388235 )
+
 [sub_resource type="CapsuleMesh" id=1]
+material = SubResource( 6 )
 
 [sub_resource type="SphereMesh" id=3]
 radius = 0.2
@@ -186,6 +238,7 @@ extents = Vector3( 1, 1.5, 1 )
 [node name="player" type="Spatial"]
 script = SubResource( 2 )
 distance = Vector3( 0, 0, 2 )
+i = 3
 
 [node name="mesh" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -193,6 +246,7 @@ mesh = SubResource( 1 )
 
 [node name="head" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+visible = false
 enabled = true
 cast_to = Vector3( 0, 50, 0 )
 collide_with_areas = true
@@ -215,6 +269,7 @@ debug_shape_custom_color = Color( 0.290196, 1, 0, 1 )
 
 [node name="left" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+visible = false
 enabled = true
 cast_to = Vector3( -50, 0, 0 )
 collide_with_areas = true
@@ -223,6 +278,7 @@ debug_shape_custom_color = Color( 1, 0.494118, 0, 1 )
 
 [node name="right" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+visible = false
 enabled = true
 cast_to = Vector3( 50, 0, 0 )
 collide_with_areas = true
