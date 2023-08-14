@@ -29,6 +29,7 @@ var jump_up :bool = false
 var jump_down :bool = false
 var jump_count :int = 0
 var slide :bool = false
+var error :float = 0.5
 
 const gravity :float  = -9.8
 enum OPT_AXES {x, y, z}
@@ -101,8 +102,9 @@ func punishment(var delta :float):
 
 func cover_surface(var axes :int) -> Vector3:
 	var rect :Rect2 = build_rect(axes,global_transform.origin, $Area/CollisionShape.shape.extents)
-	var list = [rect.position + Vector2(0.2,0.2),rect.position + rect.size * Vector2.UP + Vector2(0.2,-0.2), rect.position + rect.size * Vector2.RIGHT  + Vector2(-0.2,0.2), rect.position + rect.size - Vector2(0.2,0.2)]
+	var list = [rect.position, rect.position - rect.size * Vector2.UP, rect.position  + rect.size * Vector2.RIGHT, rect.position + rect.size ]
 	var value : Vector3 = Vector3.ZERO
+	print_debug(list)
 	match axes:
 		0:
 			for pos in list:
@@ -125,7 +127,7 @@ func build_rect(var axes :int, var value0 :Vector3, var value1 : Vector3, var ce
 	var position :Vector2 = Vector2.ZERO
 	var extents :Vector2 = Vector2.ZERO
 	var centered :float  = 0.0
-	if not center:
+	if center:
 		centered  = 0.5
 	match axes:
 		0:
@@ -238,7 +240,6 @@ extents = Vector3( 1, 1.5, 1 )
 [node name="player" type="Spatial"]
 script = SubResource( 2 )
 distance = Vector3( 0, 0, 2 )
-i = 3
 
 [node name="mesh" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
