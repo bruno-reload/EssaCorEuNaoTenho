@@ -29,7 +29,6 @@ func _process(delta):
 
 [node name="player" parent="scene" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2.87438 )
-i = 3
 
 [node name="Camera" type="Camera" parent="scene"]
 transform = Transform( 1, 0, 0, 0, 0.910777, 0.412898, 0, -0.412898, 0.910777, 9.53674e-07, 5.79239, 6.33953 )

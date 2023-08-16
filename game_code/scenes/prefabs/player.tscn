@@ -9,7 +9,6 @@ export(float) var dragging_magnitude :float = 10.0
 export(Vector2) var axes_speed :Vector2 = Vector2(6.0,3.0)
 export(Vector3) var distance :Vector3 = Vector3(2.0, 1.0,0.0)
 export(int) var line :int = 3
-export(int) var i :int = 0
 
 var pivot :Vector3 = Vector3.ZERO
 var dir :Vector2 = Vector2.ZERO
@@ -29,14 +28,8 @@ var jump_up :bool = false
 var jump_down :bool = false
 var jump_count :int = 0
 var slide :bool = false
-var error :float = 0.5
-
-var frontal_collision :bool  = false
-var sido_left_colision :bool = false
-var sido_right_colision :bool = false
 
 const gravity :float  = -9.8
-enum OPT_AXES {x, y, z}
 
 func _ready():
 	
@@ -78,7 +71,6 @@ func _process(delta):
 	var p = get_viewport().get_camera().project_position(get_viewport().get_mouse_position(), d.length())
 	$bola.global_transform.origin = p 
 
-
 func move_left():
 	dir.x = -1
 
@@ -86,70 +78,19 @@ func move_right():
 	dir.x = 1
 
 func punishment(var delta :float):
+	var frontal_collision :bool  = false
+	var sido_of_front_colision :bool = false
+	if $forward.get_collider() != null:
+		frontal_collision = $forward.get_collision_point().z - transform.origin.z + pivot.z > 0.0
+		var fontal_collider_shape = $forward.get_collider().shape_owner_get_owner($forward.get_collider_shape())
+#		print((fontal_collider_shape as CollisionShape).shape.extents.y - )
+		sido_of_front_colision = transform.origin.y - pivot.y > $forward.get_collision_point().y and fontal_collider_shape
 
-	var col_pos = cover_surface(OPT_AXES.z)
-#	if sido_left_colision:
-#		var col_pos = cover_surface(OPT_AXES.x)
-#		sido_left_colision = false
-#
-#		if col_pos != null:
-#			GameParam.speed = 0
-#			global_transform.origin = Vector3(col_pos.x, global_transform.origin.x, global_transform.origin.y)
-#	if sido_right_colision:
-#		var col_pos = cover_surface(OPT_AXES.x)
-#		sido_right_colision = false
-#
-#		global_transform.origin = Vector3(col_pos.x, global_transform.origin.y, global_transform.origin.z)
-
-func cover_surface(var axes :int):
-	var rect :Rect2 = build_rect(axes,global_transform.origin, $Area/CollisionShape.shape.extents)
-	var list = [rect.position - rect.size/2.0, 
-		rect.position - rect.size * Vector2.UP + Vector2(-rect.size.x, rect.size.y) /2.0, 
-		rect.position + rect.size + rect.size /2.0 ,
-		rect.position  + rect.size * Vector2.RIGHT + Vector2(rect.size.x, -rect.size.y) /2.0]
-	var value : Vector3 = Vector3.ZERO
-	
-	match axes:
-		0:
-			for pos in list:
-				$right.global_transform.origin = Vector3($right.global_transform.origin.x, pos.y, pos.x)
-				if $right.get_collider() != null:
-					value = $right.get_collision_point() - pivot.x * Vector3.RIGHT
-		1: 
-			for pos in list:
-#				$forward.global_transform.origin = Vector3(pos.x, $forward.global_transform.origin.y, pos.y)
-				pass
-		2:
-			for pos in list:
-				$forward.force_update_transform()
-				$forward.force_raycast_update() 
-				$forward.global_transform.origin = Vector3(pos.x, pos.y, $forward.global_transform.origin.z)
-				if $forward.is_colliding():
-					value = $forward.get_collision_point() + pivot.z * Vector3.BACK
-					print(value)
-					if value.z >= global_transform.origin.z:
-						GameParam.speed = 0
-#					global_transform.origin = Vector3(global_transform.origin.x, global_transform.origin.y, value.z)
-
-	return value
-
-func build_rect(var axes :int, var value0 :Vector3, var value1 : Vector3, var center :bool = true):
-	var position :Vector2 = Vector2.ZERO
-	var extents :Vector2 = Vector2.ZERO
-	var centered :float  = 0.0
-	if center:
-		centered  = 0.5
-	match axes:
-		0:
-			extents = Vector2(value1.z, value1.y)
-			position = Vector2(value0.z - extents.x * centered, value0.y - extents.y * centered)
-		1: 
-			extents = Vector2(value1.x, value1.z)
-			position = Vector2(value0.x - extents.x * centered, value0.z - extents.y * centered)
-		2:
-			extents = Vector2(value1.x, value1.y)
-			position = Vector2(value0.x - extents.x * centered, value0.y - extents.y * centered)
-	return Rect2(position, extents)
+	if frontal_collision:
+		frontal_collision = false
+		GameParam.speed = 0
+		pass
+	pass
 
 func jump():
 	if jump_count < 3:
@@ -164,13 +105,11 @@ func swipe():
 		print_debug(\"deslisou\")
 
 func horizontal_moviment(var delta: float):
-	if dir.x != 0.0:
+	if not dir.x == 0.0:
 		if count_h_move > destiny:
 			count_h_move = 0.0 
 			dir.x = 0.0
 			h_move = false
-		elif sido_right_colision:
-			dir.x = -dir.x
 		else:
 			h_move = true
 			count_h_move += delta * pow(axes_speed.x,2.0)
@@ -223,8 +162,6 @@ func avaliable_jump_states(var top :float, var d :float):
 		jump_down = true
 
 func _on_area_entered(area):
-	if area.name == \"road\":
-		$forward.add_exception(area)
 	jump_count = 0
 	count = 0.0
 	jumping = false
@@ -232,7 +169,6 @@ func _on_area_entered(area):
 	jump_top = false
 	jump_up = false
 	jump_down = false
-	
 
 func _on_area_exited(area):
 	on_floor = false
