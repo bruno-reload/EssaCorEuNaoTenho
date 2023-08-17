@@ -6,9 +6,10 @@ script/source = "extends Spatial
 export(float) var hight :float = 4.0
 export(float) var destiny :float = 3.0
 export(float) var dragging_magnitude :float = 10.0
-export(Vector2) var axes_speed :Vector2 = Vector2(6.0,3.0)
+export(Vector2) var axes_speed :Vector2 = Vector2(4.0,3.0)
 export(Vector3) var distance :Vector3 = Vector3(2.0, 1.0,0.0)
-export(int) var line :int = 3
+export(float) var distance_between_line :float = 2.0
+export(int) var line :int = 2
 export(int) var i :int = 0
 
 var pivot :Vector3 = Vector3.ZERO
@@ -18,12 +19,14 @@ var s_i : float = 0.0
 var s_f :float = 0.0
 var last_s_f :float = 0.0
 var pressed :bool = false
-var count_line :int = 0
 var on_floor :bool = false
 var on_top :bool = true
 var jumping :bool = false
 var h_move :bool = false
 var count_h_move :float = 0.0
+var current_line :float = 0.0
+var next_line :int = 0
+var preview_line :int = 0
 var jump_top :bool = false
 var jump_up :bool = false
 var jump_down :bool = false
@@ -62,10 +65,8 @@ func _unhandled_input(event):
 			var teta = rad2deg(event.relative.angle_to(Vector2.UP))
 			if teta >  45 and teta < 135:
 				move_left() 
-				count_line -= 1
 			elif teta < -45 and teta > -135:
 				move_right()
-				count_line += 1
 			elif teta <  45 and teta > -45:
 				jump()
 			else:
@@ -79,12 +80,17 @@ func _process(delta):
 	var p = get_viewport().get_camera().project_position(get_viewport().get_mouse_position(), d.length())
 	$bola.global_transform.origin = p 
 
-
 func move_left():
-	dir.x = -1
+	if not h_move:
+		h_move = true
+		dir.x = -1
+		next_line = clamp(next_line - 1 , -line, line)
 
 func move_right():
-	dir.x = 1
+	if not h_move:
+		h_move = true
+		dir.x = 1
+		next_line = clamp(next_line + 1 , -line, line)
 
 func punishment():
 	var col_pos = cover_surface(OPT_AXES.x)
@@ -149,18 +155,24 @@ func swipe():
 		print_debug(\"deslisou\")
 
 func horizontal_moviment(var delta: float):
-	if dir.x != 0.0:
-		if count_h_move > destiny:
-			count_h_move = 0.0 
-			dir.x = 0.0
-			h_move = false
-		elif sido_right_colision:
-			dir.x = -dir.x
+	if h_move:
+		if sido_right_colision:
+			dir.x = -1
 			sido_right_colision = false
+			next_line = (next_line - 1) % line
+		if sido_left_colision:
+			dir.x = 1
+			sido_right_colision = false
+			next_line = (next_line + 1) % line
+		
+		if current_line * dir.x > next_line * distance_between_line* dir.x :
+			current_line = next_line * distance_between_line
+			transform.origin.x = current_line
+			h_move = false
 		else:
-			h_move = true
-			count_h_move += delta * pow(axes_speed.x,2.0)
-			transform.origin.x += delta * dir.x * pow(axes_speed.x,2.0)
+			current_line += delta * dir.x * pow(axes_speed.x,2.0)
+			transform.origin.x = current_line
+	
 
 func jump_movimente(var delta: float):
 	if not on_floor:
@@ -198,7 +210,7 @@ func jump_movimente(var delta: float):
 					count = 0
 			pass
 		global_transform.origin.y = s_f 
-	
+
 func avaliable_jump_states(var top :float, var d :float):
 	if top == 0.0:
 		jump_top = true
@@ -217,7 +229,6 @@ func _on_area_entered(area):
 	jump_top = false
 	jump_up = false
 	jump_down = false
-	
 
 func _on_area_exited(area):
 	on_floor = false
