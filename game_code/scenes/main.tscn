@@ -28,23 +28,22 @@ func _process(delta):
 [node name="scene" type="Spatial" parent="."]
 
 [node name="player" parent="scene" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2.87438 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.874 )
 
 [node name="Camera" type="Camera" parent="scene"]
 transform = Transform( 1, 0, 0, 0, 0.910777, 0.412898, 0, -0.412898, 0.910777, 9.53674e-07, 5.79239, 6.33953 )
 
 [node name="bloco" parent="scene" groups=["obstacle"] instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -50.5011 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -2.382 )
 
-[node name="road" type="Spatial" parent="scene"]
-unique_name_in_owner = true
+[node name="road" type="Spatial" parent="scene" groups=["ignore"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 
 [node name="mesh" type="MeshInstance" parent="scene/road"]
-visible = false
 mesh = SubResource( 2 )
 
 [node name="road" type="Area" parent="scene/road"]
+collision_layer = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="scene/road/road"]
 shape = SubResource( 6 )
