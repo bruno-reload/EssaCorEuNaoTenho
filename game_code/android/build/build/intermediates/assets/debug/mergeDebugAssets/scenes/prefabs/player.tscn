@@ -4,12 +4,13 @@
 script/source = "extends Spatial
 
 export(float) var hight :float = 4.0
-export(float) var destiny :float = 2.0
-export(float) var jump_speed :float = 3.0 
+export(float) var destiny :float = 3.0
 export(float) var dragging_magnitude :float = 10.0
-export(Vector2) var axes_speed :Vector2 = Vector2(10.0,10.0)
+export(Vector2) var axes_speed :Vector2 = Vector2(4.0,3.0)
 export(Vector3) var distance :Vector3 = Vector3(2.0, 1.0,0.0)
-export(int) var line :int = 3
+export(float) var distance_between_line :float = 3.0
+export(int) var line :int = 2
+export(int) var i :int = 0
 
 var pivot :Vector3 = Vector3.ZERO
 var dir :Vector2 = Vector2.ZERO
@@ -17,27 +18,44 @@ var count :float = 0.0
 var s_i : float = 0.0
 var s_f :float = 0.0
 var last_s_f :float = 0.0
-var count_destiny :float = 0.0
 var pressed :bool = false
-var count_line :int = 0
 var on_floor :bool = false
 var on_top :bool = true
 var jumping :bool = false
 var h_move :bool = false
+var count_h_move :float = 0.0
+var current_line :float = 0.0
+var next_line :int = 0
+var preview_line :int = 0
 var jump_top :bool = false
 var jump_up :bool = false
 var jump_down :bool = false
 var jump_count :int = 0
 var slide :bool = false
+var error :float = 0.5
+
+var frontal_collision :bool  = false
+var sido_left_colision :bool = false
+var sido_right_colision :bool = false
 
 const gravity :float  = -9.8
+enum OPT_AXES {x, y, z}
 
 func _ready():
+	
+	$on_floor.global_transform.origin = -$on_floor.cast_to/2.0 + global_transform.origin * Vector3(1.0, 0.0, 1.0)
+	$head.global_transform.origin = -$head.cast_to/2.0 + global_transform.origin * Vector3(1.0, 0.0, 1.0)
+	$left.global_transform.origin = $right.cast_to/2.0 + global_transform.origin * Vector3(0.0, 1.0, 1.0)
+	$right.global_transform.origin = -$right.cast_to/2.0 + global_transform.origin * Vector3(0.0, 1.0, 1.0)
+	
 	$on_floor.force_raycast_update()
-	pivot = $mesh.get_transformed_aabb().size/2.0
+	pivot = $Area/CollisionShape.shape.extents
 	s_i =  $on_floor.get_collision_point().y + pivot.y
 	s_f = s_i
 	last_s_f = s_i 
+	
+	for item in get_tree().get_nodes_in_group(\"ignore\"):
+		$forward.add_exception(item)
 
 func _unhandled_input(event):
 	if event is InputEventScreenTouch and event.is_pressed():
@@ -47,10 +65,8 @@ func _unhandled_input(event):
 			var teta = rad2deg(event.relative.angle_to(Vector2.UP))
 			if teta >  45 and teta < 135:
 				move_left() 
-				count_line -= 1
 			elif teta < -45 and teta > -135:
 				move_right()
-				count_line += 1
 			elif teta <  45 and teta > -45:
 				jump()
 			else:
@@ -58,48 +74,126 @@ func _unhandled_input(event):
 			pressed = false
 
 func _process(delta):
-	$on_floor.global_transform.origin = -$on_floor.cast_to/2.0 + global_transform.origin * Vector3(1.0, 0.0, 1.0)
-	anim_jump(delta)
-	anim_horizontal(delta)
-	
+	jump_movimente(delta)
+	horizontal_moviment(delta)
 	var d = get_viewport().get_camera().transform.origin - transform.origin
 	var p = get_viewport().get_camera().project_position(get_viewport().get_mouse_position(), d.length())
 	$bola.global_transform.origin = p 
 
 func move_left():
-	dir.x = -1
+	if not h_move:
+		h_move = true
+		dir.x = -1
+		next_line = int(clamp(next_line - 1 , -line, line))
 
 func move_right():
-	dir.x = 1
+	if not h_move:
+		h_move = true
+		dir.x = 1
+		next_line = int(clamp(next_line + 1 , -line, line))
+
+func punishment():
+	cover_surface(OPT_AXES.x)
+
+func cover_surface(var axes :int):
+	var rect :Rect2 = build_rect(axes,global_transform.origin, $Area/CollisionShape.shape.extents)
+	var list = [rect.position - rect.size/2.0, 
+		rect.position - rect.size * Vector2.UP + Vector2(-rect.size.x, rect.size.y) /2.0, 
+		rect.position  + rect.size * Vector2.RIGHT + Vector2(rect.size.x, -rect.size.y) /2.0,
+		rect.position + rect.size + rect.size /2.0]
+	var value : Vector3 = Vector3.ZERO
+	
+	match axes:
+		0:
+			for pos in list:
+#				$left.force_raycast_update()
+#				$left.global_transform.origin = Vector3($left.global_transform.origin.x, pos.y, pos.x)
+				$right.force_raycast_update()
+				$right.global_transform.origin = Vector3($right.global_transform.origin.x, pos.y, pos.x)
+				if  dir.x > 0.0 and $right.get_collider() != null:
+					var obstacle :Obstacle = instance_from_id($right.get_collider().get_instance_id())
+					var right_x = $right.get_collision_point().x
+					var l = transform.origin.x + pivot.x > right_x
+					var r = transform.origin.x - pivot.x < right_x + obstacle.dimencion().x * 2.0
+					var up = transform.origin.y - pivot.y <  obstacle.transform.origin.y + obstacle.dimencion().y - 0.1
+					print(str(l) + str(r) + str(up))
+					if l and r and up:
+						sido_right_colision = true
+#				else:
+#					if $left.get_collider() != null and transform.origin.x < $left.get_collision_point().x and dir.x > 0.0:
+#						sido_right_colision = true
+		1: 
+			for pos in list:
+#				$forward.global_transform.origin = Vector3(pos.x, $forward.global_transform.origin.y, pos.y)
+				pass
+		2:
+			for pos in list:
+				$forward.global_transform.origin = Vector3(pos.x, pos.y, $forward.global_transform.origin.z)
+				$forward.force_raycast_update()
+				if $forward.is_colliding():
+					print()
+					GameParam.speed = 0
+					value = $forward.get_collision_point() + pivot.z * Vector3.BACK
+					global_transform.origin = Vector3(global_transform.origin.x, global_transform.origin.y, value.z)
+	return value
+
+func build_rect(var axes :int, var value0 :Vector3, var value1 : Vector3, var center :bool = true):
+	var position :Vector2 = Vector2.ZERO
+	var extents :Vector2 = Vector2.ZERO
+	var centered :float  = 0.0
+	if center:
+		centered  = 0.5
+	match axes:
+		0:
+			extents = Vector2(value1.z, value1.y)
+			position = Vector2(value0.z - extents.x * centered, value0.y - extents.y * centered)
+		1: 
+			extents = Vector2(value1.x, value1.z)
+			position = Vector2(value0.x - extents.x * centered, value0.z - extents.y * centered)
+		2:
+			extents = Vector2(value1.x, value1.y)
+			position = Vector2(value0.x - extents.x * centered, value0.y - extents.y * centered)
+	return Rect2(position, extents)
 
 func jump():
 	if jump_count < 3:
 		count = 0.0
-		jumping = true
 		jump_count += 1
+		jumping = true
 		on_floor = false
 		s_i = last_s_f
 
 func swipe():
-	print_debug(\"deslisou\")
+	if on_floor:
+		print_debug(\"deslisou\")
 
-func anim_horizontal(var delta: float):
-	if not dir.x == 0.0:
-		if count_destiny > destiny:
-			count_destiny = 0.0 
-			dir.x = 0.0
+func horizontal_moviment(var delta: float):
+	if h_move:
+		if sido_right_colision:
+			sido_right_colision = false
+			dir.x = -1
+			next_line = clamp(next_line - 1, -line, line)
+		if sido_left_colision:
+			dir.x = 1
+			sido_left_colision = false
+			next_line = clamp(next_line + 1, -line, line)
+		
+		if current_line * dir.x > next_line * distance_between_line* dir.x :
+			current_line = next_line * distance_between_line
+			transform.origin.x = current_line
 			h_move = false
 		else:
-			h_move = true
-			count_destiny += delta * axes_speed.x
-			transform.origin.x += delta * dir.x * axes_speed.x
+			current_line += delta * dir.x * pow(axes_speed.x,2.0)
+			transform.origin.x = current_line
+	
 
-func anim_jump(var delta: float):
+func jump_movimente(var delta: float):
 	if not on_floor:
+		$on_floor.force_raycast_update()
 		if jumping:
 			
 			if not h_move:
-				count += jump_speed * delta
+				count += axes_speed.y * delta
 			
 			var h :float =  0.0 
 			var sqr :float = 0.0
@@ -111,44 +205,46 @@ func anim_jump(var delta: float):
 				h = hight / pow(distance.z/2.0,2.0)
 				sqr = distance.z * count -pow(count , 2.0)
 				s_f = s_i + sqr * h 
+				
+			avaliable_jump_states(hight - sqr * h, (distance.z/2.0) - count)
 			
 			if s_f <= $on_floor.get_collision_point().y + pivot.y:
-				s_f = $on_floor.get_collision_point().y + pivot.y
-				last_s_f = s_f
-				jump_count = 0
+				s_f = $on_floor.get_collision_point().y + pivot.y - 0.01
+				last_s_f = s_f + 0.1
+				jumping = false
+				on_floor = true
 		else:
 			if transform.origin.y - pivot.y >= $on_floor.get_collision_point().y:
-				
 				if not h_move:
-					s_f = transform.origin.y - jump_speed * count + gravity * pow(count,2.0)/2.0 
+					s_f = transform.origin.y - axes_speed.y * count + gravity * pow(count,2.0)/2.0 
 					count += delta
 				if s_f <= $on_floor.get_collision_point().y + pivot.y:
-					s_f = $on_floor.get_collision_point().y + pivot.y
+					s_f = $on_floor.get_collision_point().y + pivot.y - 0.01
 					last_s_f = s_f
-					jump_count = 0
-					count = 0
-			pass
-		transform.origin.y = s_f 
-	
+					on_floor = true
+		global_transform.origin.y = s_f 
 
-func avaliable_jump_dir(top, dir):
+func avaliable_jump_states(var top :float, var d :float):
 	if top == 0.0:
 		jump_top = true
-	elif dir > 0:
+	elif d > 0:
 		jump_up = true
 	else:
 		jump_down = true
 
+# warning-ignore:unused_argument
 func _on_area_entered(area):
+	if area.name != \"road\":
+		punishment()
 	jump_count = 0
 	count = 0.0
-	on_floor = true
 	jumping = false
 	
 	jump_top = false
 	jump_up = false
 	jump_down = false
 
+# warning-ignore:unused_argument
 func _on_area_exited(area):
 	on_floor = false
 "
@@ -164,9 +260,6 @@ extents = Vector3( 1, 1.5, 1 )
 
 [node name="player" type="Spatial"]
 script = SubResource( 2 )
-destiny = 4.0
-jump_speed = 5.0
-axes_speed = Vector2( 50, 10 )
 distance = Vector3( 0, 0, 2 )
 
 [node name="mesh" type="MeshInstance" parent="."]
@@ -177,40 +270,35 @@ mesh = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
 visible = false
 enabled = true
-cast_to = Vector3( 0, 10, 0 )
+cast_to = Vector3( 0, 50, 0 )
 collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color( 0, 0.156863, 1, 1 )
 
 [node name="on_floor" type="RayCast" parent="."]
-enabled = true
-cast_to = Vector3( 0, -50, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
+cast_to = Vector3( 0, -100, 0 )
+collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color( 1, 0, 0, 1 )
 
 [node name="forward" type="RayCast" parent="."]
-visible = false
-enabled = true
-cast_to = Vector3( 0, 0, -10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50 )
+cast_to = Vector3( 0, 0, -100 )
 collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color( 0.290196, 1, 0, 1 )
 
 [node name="left" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
-visible = false
-enabled = true
-cast_to = Vector3( -10, 0, 0 )
+cast_to = Vector3( -50, 0, 0 )
+collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color( 1, 0.494118, 0, 1 )
 
 [node name="right" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
-visible = false
-enabled = true
-cast_to = Vector3( 10, 0, 0 )
+cast_to = Vector3( 50, 0, 0 )
 collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color( 0, 1, 0.976471, 1 )
@@ -222,7 +310,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78575, 0, 0 )
 mesh = SubResource( 3 )
 
 [node name="Area" type="Area" parent="."]
-collision_layer = 0
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 5 )
