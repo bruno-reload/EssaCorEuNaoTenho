@@ -12,7 +12,7 @@ albedo_color = Color( 0.101961, 0.392157, 0.756863, 1 )
 material = SubResource( 10 )
 size = Vector3( 2, 3, 20 )
 
-[node name="bloco" type="Area"]
+[node name="bloco" type="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -25.2537 )
 collision_layer = 3
 script = ExtResource( 1 )

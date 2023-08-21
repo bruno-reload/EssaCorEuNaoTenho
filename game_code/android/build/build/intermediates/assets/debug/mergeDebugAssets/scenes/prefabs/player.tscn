@@ -33,6 +33,8 @@ var jump_down :bool = false
 var jump_count :int = 0
 var slide :bool = false
 var error :float = 0.5
+var on_collider :bool = false
+var last_position :Vector3 = Vector3.ZERO
 
 var frontal_collision :bool  = false
 var sido_left_colision :bool = false
@@ -40,7 +42,8 @@ var sido_right_colision :bool = false
 
 const gravity :float  = -9.8
 enum OPT_AXES {x, y, z}
-
+var obj :PlayerControler
+var pos
 func _ready():
 	
 	$on_floor.global_transform.origin = -$on_floor.cast_to/2.0 + global_transform.origin * Vector3(1.0, 0.0, 1.0)
@@ -53,6 +56,10 @@ func _ready():
 	s_i =  $on_floor.get_collision_point().y + pivot.y
 	s_f = s_i
 	last_s_f = s_i 
+	pos = transform.origin
+	last_position = pos
+	
+	self.obj = PlayerControler.new(transform.origin, GameParam.speed, hight)
 	
 	for item in get_tree().get_nodes_in_group(\"ignore\"):
 		$forward.add_exception(item)
@@ -74,11 +81,13 @@ func _unhandled_input(event):
 			pressed = false
 
 func _process(delta):
-	jump_movimente(delta)
-	horizontal_moviment(delta)
-	var d = get_viewport().get_camera().transform.origin - transform.origin
-	var p = get_viewport().get_camera().project_position(get_viewport().get_mouse_position(), d.length())
-	$bola.global_transform.origin = p 
+#	jump_movimente(delta)
+#	horizontal_moviment(delta)
+#	var d = get_viewport().get_camera().transform.origin - transform.origin
+#	var p = get_viewport().get_camera().project_position(get_viewport().get_mouse_position(), d.length())
+#	$bola.global_transform.origin = p 
+
+	transform.origin.y = obj.vertical_moviment(delta)
 
 func move_left():
 	if not h_move:
@@ -93,7 +102,10 @@ func move_right():
 		next_line = int(clamp(next_line + 1 , -line, line))
 
 func punishment():
-	cover_surface(OPT_AXES.x)
+	if dir.x != 0:
+		cover_surface(OPT_AXES.x)
+	else:	
+		cover_surface(OPT_AXES.z)
 
 func cover_surface(var axes :int):
 	var rect :Rect2 = build_rect(axes,global_transform.origin, $Area/CollisionShape.shape.extents)
@@ -106,22 +118,26 @@ func cover_surface(var axes :int):
 	match axes:
 		0:
 			for pos in list:
-#				$left.force_raycast_update()
-#				$left.global_transform.origin = Vector3($left.global_transform.origin.x, pos.y, pos.x)
+				$left.force_raycast_update()
+				$left.global_transform.origin = Vector3($left.global_transform.origin.x, pos.y, pos.x)
 				$right.force_raycast_update()
 				$right.global_transform.origin = Vector3($right.global_transform.origin.x, pos.y, pos.x)
 				if  dir.x > 0.0 and $right.get_collider() != null:
 					var obstacle :Obstacle = instance_from_id($right.get_collider().get_instance_id())
 					var right_x = $right.get_collision_point().x
 					var l = transform.origin.x + pivot.x > right_x
-					var r = transform.origin.x - pivot.x < right_x + obstacle.dimencion().x * 2.0
-					var up = transform.origin.y - pivot.y <  obstacle.transform.origin.y + obstacle.dimencion().y - 0.1
-					print(str(l) + str(r) + str(up))
+					var r = transform.origin.x - pivot.x < right_x + obstacle.extents().x * 2.0
+					var up = transform.origin.y - pivot.y <  obstacle.transform.origin.y + obstacle.extents().y - 0.1
 					if l and r and up:
 						sido_right_colision = true
-#				else:
-#					if $left.get_collider() != null and transform.origin.x < $left.get_collision_point().x and dir.x > 0.0:
-#						sido_right_colision = true
+				if  dir.x < 0.0 and $left.get_collider() != null and $left.get_collider().name != \"road\":
+					var obstacle :Obstacle = instance_from_id($left.get_collider().get_instance_id())
+					var right_x = $left.get_collision_point().x
+					var l = transform.origin.x - pivot.x < right_x
+					var r = transform.origin.x - pivot.x < right_x + obstacle.extents().x * 2.0
+					var up = transform.origin.y - pivot.y <  obstacle.transform.origin.y + obstacle.extents().y - 0.1
+					if l and r and up:
+						sido_left_colision = true
 		1: 
 			for pos in list:
 #				$forward.global_transform.origin = Vector3(pos.x, $forward.global_transform.origin.y, pos.y)
@@ -130,8 +146,7 @@ func cover_surface(var axes :int):
 			for pos in list:
 				$forward.global_transform.origin = Vector3(pos.x, pos.y, $forward.global_transform.origin.z)
 				$forward.force_raycast_update()
-				if $forward.is_colliding():
-					print()
+				if $forward.is_colliding() and $forward.get_collider().name == \"road\":
 					GameParam.speed = 0
 					value = $forward.get_collision_point() + pivot.z * Vector3.BACK
 					global_transform.origin = Vector3(global_transform.origin.x, global_transform.origin.y, value.z)
@@ -156,12 +171,14 @@ func build_rect(var axes :int, var value0 :Vector3, var value1 : Vector3, var ce
 	return Rect2(position, extents)
 
 func jump():
-	if jump_count < 3:
-		count = 0.0
-		jump_count += 1
+	if on_floor:
 		jumping = true
-		on_floor = false
-		s_i = last_s_f
+#	if jump_count < 3:
+#		count = 0.0
+#		jump_count += 1
+#		jumping = true
+#		on_floor = false
+#		s_i = last_s_f
 
 func swipe():
 	if on_floor:
@@ -185,13 +202,11 @@ func horizontal_moviment(var delta: float):
 		else:
 			current_line += delta * dir.x * pow(axes_speed.x,2.0)
 			transform.origin.x = current_line
-	
 
 func jump_movimente(var delta: float):
 	if not on_floor:
 		$on_floor.force_raycast_update()
 		if jumping:
-			
 			if not h_move:
 				count += axes_speed.y * delta
 			
@@ -207,8 +222,10 @@ func jump_movimente(var delta: float):
 				s_f = s_i + sqr * h 
 				
 			avaliable_jump_states(hight - sqr * h, (distance.z/2.0) - count)
-			
-			if s_f <= $on_floor.get_collision_point().y + pivot.y:
+			if $on_floor.get_collision_point().y > transform.origin.y + pivot.y:
+				s_f = transform.origin.y 
+				jumping = false
+			elif s_f <= $on_floor.get_collision_point().y + pivot.y:
 				s_f = $on_floor.get_collision_point().y + pivot.y - 0.01
 				last_s_f = s_f + 0.1
 				jumping = false
@@ -234,8 +251,10 @@ func avaliable_jump_states(var top :float, var d :float):
 
 # warning-ignore:unused_argument
 func _on_area_entered(area):
-	if area.name != \"road\":
-		punishment()
+#	if area.name != \"road\":
+#		punishment()
+	if area is Obstacle:
+		on_collider = true
 	jump_count = 0
 	count = 0.0
 	jumping = false
@@ -247,6 +266,73 @@ func _on_area_entered(area):
 # warning-ignore:unused_argument
 func _on_area_exited(area):
 	on_floor = false
+
+class PlayerControler extends Object:
+	const jump_count :int = 2
+	var jump_height :float = 1.0 
+	var jump_speed :float = 1.0
+	var jump_up :bool = false
+	var jump_down :bool = false
+	var jump_on_top :bool = false
+	var max_jump_count :int  = 1.0
+	
+	var h_move_distance :float = 1.0
+	var h_speed :float = 1.0
+	var line :int  = 0 
+	
+	var position :Vector3 = Vector3.ZERO
+	var count_time :float = 0.0
+	var delta_x :float = 1.0
+	
+	var s_i = 0 
+	var s_f = 0
+	
+	const BASE :int = 0
+	const JUMP :int = 1
+	const FALL :int = 2
+	const TOP :int = 3
+	const LEFT :int  = 4
+	const RIGHT :int  = 4
+	
+	var c_states = PlayerControler.BASE
+	
+	func _init(var pos :Vector3, var speed :float, var hight :float, var d_x :float = 10.0):
+		self.position = pos
+		self.jump_height = hight
+		self.delta_x = d_x
+		self.jump_speed = speed
+	
+	
+	
+	func vertical_moviment(var delta :float, var interrupt :bool = false, var jump :bool = false) -> float:
+		
+		
+		count_time += delta * jump_speed
+		
+		var h :float =  0.0 
+		var p :float = 0.0
+		
+		if interrupt:
+			count_time = delta_x - count_time
+		
+		h = jump_height / pow(delta_x/2.0,2.0)
+		p = delta_x * count_time - pow(count_time , 2.0)
+#
+		avaliable_jump_states(count_time)
+		
+		return s_i + h * p
+
+	func move_left() -> float:
+		return 0.0
+	func move_right() -> float:
+		return 0.0
+	func avaliable_jump_states(var x :float):
+		if x > delta_x / 2.0 - 0.2:
+			c_states = JUMP
+		elif x < delta_x / 2.0 + 0.2:
+			c_states = FALL
+		else:
+			c_states = TOP
 "
 
 [sub_resource type="CapsuleMesh" id=1]

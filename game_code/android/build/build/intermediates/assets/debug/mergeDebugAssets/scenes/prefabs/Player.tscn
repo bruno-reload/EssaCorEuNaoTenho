@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends KinematicBody
+
+export(float) var dragging_magnitude: float = 10.0
+export(float) var gravity :float = -100
+export(float) var jump_height :float = 5
+export(float) var h_distance :float = 3
+export(float) var speed :float = 20
+export(float) var line :int = 0
+export(int) var nax_moviment :int = 2
+
+var velocity :Vector3 = Vector3.ZERO
+var pressed = false
+var dir :int = 0
+var h_moviment :bool = false
+var jump_count :int = 0
+var h_count :int = 0
+var floor_entere :bool = false
+
+const h_max = 2
+
+func _unhandled_input(event):
+	if event is InputEventScreenTouch and event.is_pressed():
+		pressed = true
+
+	if event is InputEventScreenDrag:
+		if event.relative.length() > dragging_magnitude and pressed:
+			handle_drag(event)
+
+func handle_drag(event: InputEventScreenDrag):
+	var teta = rad2deg(event.relative.angle_to(Vector2.UP))
+
+	if teta > 45 and teta < 135:
+		move_left()
+	elif teta < -45 and teta > -135:
+		move_right()
+	elif teta < 45 and teta > -45:
+		jump()
+	else:
+		slide()  # Para o slide
+
+	pressed = false
+
+func _physics_process(var delta :float):
+	if not h_moviment:
+		velocity.y += delta * gravity
+		velocity = move_and_slide(velocity, Vector3.UP)
+	if is_on_floor():
+		jump_count = 0
+		h_count = 0
+		velocity.y = 0.0
+
+func _process(delta):
+	horizontal_moviment(delta)
+
+func jump():
+	if jump_count <  nax_moviment:
+		jump_count = clamp(jump_count +  1, 0, nax_moviment) 
+		velocity.y = sqrt(-2.0 * gravity * jump_height)
+
+func horizontal_moviment(var delta :float) -> void:
+	h_moviment = false
+	if h_count > nax_moviment and not is_on_floor():
+		return
+	if transform.origin.x * dir < line * h_distance * dir:
+		h_moviment = true
+		transform.origin.x += dir * speed * delta
+	else:
+		dir = 0
+		transform.origin.x = line * h_distance
+
+func move_left():
+	dir = -1 
+	line = clamp(line - 1, -h_max ,h_max)
+	h_count = clamp(h_count +  1, 0, nax_moviment + 1) 
+
+func move_right():
+	dir = 1
+	line = clamp(line + 1, -h_max ,h_max)
+	h_count = clamp(h_count +  1, 0, nax_moviment + 1) 
+
+func slide():
+	pass
+
+
+
+"
+
+[sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="CapsuleMesh" id=2]
+radial_segments = 13
+rings = 3
+
+[node name="Player" type="KinematicBody"]
+script = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 2 )
