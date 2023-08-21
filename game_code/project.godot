@@ -9,13 +9,19 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Spatial",
+"base": "StaticBody",
 "class": "Obstacle",
 "language": "GDScript",
 "path": "res://scripts/obstacle.tres.gd"
+}, {
+"base": "Spatial",
+"class": "SpawnCoordinator",
+"language": "GDScript",
+"path": "res://scripts/spawn_coordinator.gd"
 } ]
 _global_script_class_icons={
-"Obstacle": ""
+"Obstacle": "",
+"SpawnCoordinator": ""
 }
 
 [application]
