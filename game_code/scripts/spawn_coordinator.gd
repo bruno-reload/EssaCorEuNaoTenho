@@ -1,42 +1,37 @@
 class_name SpawnCoordinator extends Spatial
 
 const line = 2
-const column = 3
+const column = 2
+
+onready var timer = $Timer
 
 export(float) var street_gap :float = 3.0 setget set_street_gap, get_street_gap
 export(float) var level_gap :float = 5.0 setget set_level_gap, get_level_gap
 
 export(NodePath) var center :NodePath
-var target :Node = null
+
+var list :Array = [] setget set_list, get_list
 var position :Vector3 = Vector3.ZERO
-var list_x :Array = [] setget set_list_x, get_list_x
-var list_y :Array = [] setget set_list_y, get_list_y
+var target :Node = null
 
 var index :int = 0
 
 func _ready():
-	for i in range(-column, column + 1):
-		list_x.append(i)
-	for i in range(-line, line + 1):
-		list_y.append(i)
-	randomize()
-	list_x.shuffle()
-	list_y.shuffle()
-		
+	for j in range(0, line * 2 + 1):
+		for i in range(-column, column + 1):
+			list.append(Vector3(i * street_gap , j * level_gap  , transform.origin.z))
+	
+	new_object()
+	
 	target = get_node_or_null(center)
+	timer.wait_time = v_time(level_gap, GameParam.gravity) + h_time(GameParam.speed, street_gap)
+	timer.connect("timeout", self, "new_object")
 
 # warning-ignore:unused_argument
-func set_list_x(var value :Array):
+func set_list(var value :Array):
 	pass
 
-func get_list_x():
-	return null
-
-# warning-ignore:unused_argument
-func set_list_y(var value :Array):
-	pass
-
-func get_list_y():
+func get_list():
 	return null
 
 # warning-ignore:unused_argument
@@ -53,14 +48,18 @@ func get_level_gap() -> float:
 func set_level_gap(var value :float):
 	pass
 
-func arbitrary_number():
-	position = Vector3(list_x[index], list_y[index], 0)
-	if line <= column:
-		index = (index + 1) % (line * 2 + 1)
-	else:
-		index = (index + 1) % (column * 2 + 1)
+func random_position() -> Vector3:
+	position = list[index]
+	index = (index + 1) % list.size()
+	return position
+
+func new_object():
+	randomize()
+	list.shuffle()
+	random_position()
+
+static func v_time(jump_height, gravity):
+	return jump_height / sqrt(2.0 * abs(GameParam.gravity) * jump_height)
 	
-	return Vector3(list_x[index], list_y[index], 0)
-
-
-
+static func h_time(speed, space):
+	return space/speed

@@ -1,13 +1,36 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
+[ext_resource path="res://scripts/spawn_coordinator.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://scenes/prefabs/obstacle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/prefabs/road.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/prefabs/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/prefabs/collectable.tscn" type="PackedScene" id=6]
 
-[sub_resource type="SphereMesh" id=11]
-radius = 0.1
-height = 0.2
+[sub_resource type="GDScript" id=14]
+script/source = "extends Node
+
+var tiktok_plugin
+
+func _ready():
+	if Engine.has_singleton(\"TikTokPlugin\"):
+		tiktok_plugin = Engine.get_singleton(\"tiktok_plugin\")
+		print(tiktok_plugin.getMessage())
+		tiktok_plugin.connect(\"signal\",self,\"on_tiktok_signal\")
+
+func on_tiktok_signal(var msg: String):
+	print(\"sinal recebido \" + msg)
+"
+
+[sub_resource type="GDScript" id=12]
+script/source = "extends Area
+
+func _ready():
+	connect(\"body_entered\",self,\"collect\")
+
+func collect(var body :Node):
+	hide()
+"
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Label
@@ -19,32 +42,46 @@ func _process(delta):
 
 [sub_resource type="Environment" id=4]
 
+[sub_resource type="GDScript" id=13]
+script/source = "extends VBoxContainer
+
+"
+
 [node name="main" type="Node"]
 
 [node name="scene" type="Spatial" parent="."]
 
+[node name="SpawnCoordinator" type="Spatial" parent="scene"]
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="scene/SpawnCoordinator"]
+autostart = true
+
+[node name="Node" type="Node" parent="scene/SpawnCoordinator"]
+script = SubResource( 14 )
+
 [node name="Player" parent="scene" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.83533, 0 )
+sp = NodePath("../SpawnCoordinator")
+
+[node name="collectable" parent="scene" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 0.999296, 0.0375158, 0, -0.0375158, 0.999296, 0, 10.069, 0 )
+script = SubResource( 12 )
 
 [node name="Camera" type="Camera" parent="scene"]
-transform = Transform( 1, 0, 0, 0, 0.976247, 0.216661, 0, -0.216661, 0.976247, 9.53674e-07, 9.94314, 14.3271 )
+transform = Transform( 1, 0, 0, 0, 0.999296, 0.0375158, 0, -0.0375158, 0.999296, 9.53674e-07, 10.8558, 18.4461 )
+size = 40.0
 
-[node name="bloco" parent="scene" groups=["obstacle"] instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, -9.622 )
-
-[node name="bloco2" parent="scene" groups=["obstacle"] instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45496, 4, -23.333 )
-visible = false
+[node name="Obstacle" parent="scene" groups=["obstacle"] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.7331 )
+sp = NodePath("../SpawnCoordinator")
 
 [node name="road" parent="scene" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="scene"]
 transform = Transform( -0.0219022, 0.71703, -0.696698, 0, 0.696865, 0.717202, 0.99976, 0.0157083, -0.0152629, 0, -2.4379, 0 )
 shadow_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
-
-[node name="MeshInstance" type="MeshInstance" parent="scene"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.5, 0 )
-mesh = SubResource( 11 )
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -79,3 +116,56 @@ anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource( 2 )
 expand = true
+
+[node name="Control2" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -121.0
+margin_top = -96.0
+margin_right = 121.0
+margin_bottom = 96.0
+mouse_filter = 2
+script = SubResource( 13 )
+
+[node name="banner" type="Button" parent="Control2/VBoxContainer"]
+margin_right = 242.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 45, 45 )
+size_flags_horizontal = 3
+text = "Banner"
+
+[node name="intersticial" type="Button" parent="Control2/VBoxContainer"]
+margin_top = 49.0
+margin_right = 242.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 45, 45 )
+size_flags_horizontal = 3
+text = "intersticial"
+
+[node name="rewarded" type="Button" parent="Control2/VBoxContainer"]
+margin_top = 98.0
+margin_right = 242.0
+margin_bottom = 143.0
+rect_min_size = Vector2( 45, 45 )
+size_flags_horizontal = 3
+text = "rewarded"
+
+[node name="rewardedIntersticial" type="Button" parent="Control2/VBoxContainer"]
+margin_top = 147.0
+margin_right = 242.0
+margin_bottom = 192.0
+rect_min_size = Vector2( 45, 45 )
+size_flags_horizontal = 3
+text = "r intersticial video"
+
+[node name="Label" type="Label" parent="Control2/VBoxContainer"]
+margin_top = 196.0
+margin_right = 242.0
+margin_bottom = 210.0

@@ -1,0 +1,11 @@
+[config]
+
+name="tiktok_plugin"
+binary_type="local"
+binary="app-debug.aar"
+
+[dependencies]
+
+local=[]
+remote=[]
+custom_maven_repos=[]

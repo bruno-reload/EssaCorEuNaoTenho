@@ -1,3 +1,4 @@
 extends Node
 
-var speed = 5.0
+var speed :float = 5.0
+var gravity :float = -60
