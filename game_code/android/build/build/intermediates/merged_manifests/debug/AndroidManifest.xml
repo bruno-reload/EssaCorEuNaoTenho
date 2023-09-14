@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.itch.jumpstepsstudio"
+    package="io.itch.jumpstepstudio"
     android:installLocation="auto"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="24"
+        android:minSdkVersion="21"
         android:targetSdkVersion="32" />
 
     <supports-screens
@@ -49,7 +49,6 @@
         android:allowBackup="false"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
-        android:extractNativeLibs="false"
         android:hasFragileUserData="false"
         android:icon="@mipmap/icon"
         android:isGame="true"
@@ -80,19 +79,10 @@
         <!-- Records the version of the Godot editor used for building -->
         <meta-data
             android:name="org.godotengine.editor.version"
-            android:value="3.5.2.stable" /> <!-- Custom application XML added by add-ons. -->
-        <!-- CHUNK_APPLICATION_BEGIN -->
-        <!-- CHUNK_APPLICATION_END -->
-        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+            android:value="3.5.2.stable" /> <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
-        <meta-data
-            android:name="com.google.android.gms.games.APP_ID"
-            android:value="@string/app_id" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" /> <!-- Records the version of the Godot library -->
+            android:value="ca-app-pub-3940256099942544~3347511713" /> <!-- Records the version of the Godot library -->
         <meta-data
             android:name="org.godotengine.library.version"
             android:value="3.5.2.stable" />
@@ -107,25 +97,7 @@
 
         <meta-data
             android:name="org.godotengine.plugin.v1.AdMob"
-            android:value="com.poing.admob.AdMob" />
-        <meta-data
-            android:name="org.godotengine.plugin.v1.GodotPlayGamesServices"
-            android:value="io.cgisca.godot.gpgs.PlayGameServicesGodot" />
-
-        <activity
-            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <!--
-            Service handling Google Sign-In user revocation. For apps that do not integrate with
-            Google Sign-In, this service will never be started.
-        -->
-        <service
-            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-            android:exported="true"
-            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-            android:visibleToInstantApps="true" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+            android:value="com.poing.admob.AdMob" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
@@ -134,7 +106,7 @@
 
         <provider
             android:name="com.google.android.gms.ads.MobileAdsInitProvider"
-            android:authorities="io.itch.jumpstepsstudio.mobileadsinitprovider"
+            android:authorities="io.itch.jumpstepstudio.mobileadsinitprovider"
             android:exported="false"
             android:initOrder="100" />
 
@@ -148,9 +120,13 @@
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="io.itch.jumpstepsstudio.androidx-startup"
+            android:authorities="io.itch.jumpstepstudio.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.work.WorkManagerInitializer"

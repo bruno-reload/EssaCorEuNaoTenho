@@ -92,7 +92,7 @@ config={
 [application]
 
 config/name="EssaCorEuNaoTenho"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://addons/admob/test/Example.tscn"
 config/icon="res://icon.png"
 
 [autoload]

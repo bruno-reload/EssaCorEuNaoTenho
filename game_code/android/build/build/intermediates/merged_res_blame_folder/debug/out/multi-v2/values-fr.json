@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.godot.game-mergeDebugResources-20:/values-fr/values-fr.xml",
+            "outputFile": "com.godot.game-mergeDebugResources-18:/values-fr/values-fr.xml",
             "map": [
                 {
                     "source": "/home/bruno/.gradle/caches/transforms-3/0c7fc07378bbb3da85c2b30accbca564/transformed/core-1.6.0/res/values-fr/values-fr.xml",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "/home/bruno/.gradle/caches/transforms-3/ac4b84a7d985693ca3ce965d7400bb32/transformed/jetified-play-services-basement-18.2.0/res/values-fr/values.xml",
+                    "source": "/home/bruno/.gradle/caches/transforms-3/ce1a4a168e9eb728eb8ef3571af82a31/transformed/jetified-play-services-basement-18.0.0/res/values-fr/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -72,7 +72,7 @@
                     }
                 },
                 {
-                    "source": "/home/bruno/.gradle/caches/transforms-3/a281e6548b010cc6ba8f0f6568b3ca33/transformed/jetified-play-services-base-18.1.0/res/values-fr/values.xml",
+                    "source": "/home/bruno/.gradle/caches/transforms-3/ff6d2f45ffbdaa7f9acc2191114b1811/transformed/jetified-play-services-base-18.0.0/res/values-fr/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",

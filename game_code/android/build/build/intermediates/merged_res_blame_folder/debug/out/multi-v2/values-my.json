@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.godot.game-mergeDebugResources-20:/values-my/values-my.xml",
+            "outputFile": "com.godot.game-mergeDebugResources-18:/values-my/values-my.xml",
             "map": [
                 {
                     "source": "/home/bruno/.gradle/caches/transforms-3/0c7fc07378bbb3da85c2b30accbca564/transformed/core-1.6.0/res/values-my/values-my.xml",
@@ -38,24 +38,7 @@
                     }
                 },
                 {
-                    "source": "/home/bruno/.gradle/caches/transforms-3/a281e6548b010cc6ba8f0f6568b3ca33/transformed/jetified-play-services-base-18.1.0/res/values-my/values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "193,296,456,586,693,836,964,1083,1189,1361,1463,1629,1768,1922,2105,2171,2240",
-                        "endColumns": "102,159,129,106,142,127,118,105,171,101,165,138,153,182,65,68,84",
-                        "endOffsets": "295,455,585,692,835,963,1082,1188,1360,1462,1628,1767,1921,2104,2170,2239,2324"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,162,326,460,571,718,850,973,1237,1413,1519,1689,1832,1990,2177,2247,2320",
-                        "endColumns": "106,163,133,110,146,131,122,109,175,105,169,142,157,186,69,72,88",
-                        "endOffsets": "157,321,455,566,713,845,968,1078,1408,1514,1684,1827,1985,2172,2242,2315,2404"
-                    }
-                },
-                {
-                    "source": "/home/bruno/.gradle/caches/transforms-3/ac4b84a7d985693ca3ce965d7400bb32/transformed/jetified-play-services-basement-18.2.0/res/values-my/values.xml",
+                    "source": "/home/bruno/.gradle/caches/transforms-3/ce1a4a168e9eb728eb8ef3571af82a31/transformed/jetified-play-services-basement-18.0.0/res/values-my/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -86,6 +69,23 @@
                         "startOffsets": "2409,2518,2624,2739",
                         "endColumns": "108,105,114,106",
                         "endOffsets": "2513,2619,2734,2841"
+                    }
+                },
+                {
+                    "source": "/home/bruno/.gradle/caches/transforms-3/ff6d2f45ffbdaa7f9acc2191114b1811/transformed/jetified-play-services-base-18.0.0/res/values-my/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "193,296,456,586,693,836,964,1083,1189,1361,1463,1629,1768,1922,2105,2171,2240",
+                        "endColumns": "102,159,129,106,142,127,118,105,171,101,165,138,153,182,65,68,84",
+                        "endOffsets": "295,455,585,692,835,963,1082,1188,1360,1462,1628,1767,1921,2104,2170,2239,2324"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,162,326,460,571,718,850,973,1237,1413,1519,1689,1832,1990,2177,2247,2320",
+                        "endColumns": "106,163,133,110,146,131,122,109,175,105,169,142,157,186,69,72,88",
+                        "endOffsets": "157,321,455,566,713,845,968,1078,1408,1514,1684,1827,1985,2172,2242,2315,2404"
                     }
                 }
             ]
