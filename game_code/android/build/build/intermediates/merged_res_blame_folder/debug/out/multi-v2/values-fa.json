@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.godot.game-mergeDebugResources-18:/values-fa/values-fa.xml",
+            "outputFile": "com.godot.game-mergeDebugResources-19:/values-fa/values-fa.xml",
             "map": [
                 {
                     "source": "/home/bruno/.gradle/caches/transforms-3/dd0c94d33606cd3ab83a61ee6628b223/transformed/jetified-godot-lib.debug/res/values-fa/values-fa.xml",

@@ -4,19 +4,25 @@ INJECTED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/Ess
 	android:value
 		INJECTED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml
 manifest
-ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:2:1-105:12
-INJECTED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:2:1-105:12
-INJECTED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:2:1-105:12
-INJECTED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:2:1-105:12
-MERGED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:2:1-105:12
+ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:2:1-112:12
+INJECTED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:2:1-112:12
+INJECTED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:2:1-112:12
+INJECTED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:2:1-112:12
+MERGED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:2:1-112:12
 MERGED from [godot-lib.debug.aar] /home/bruno/.gradle/caches/transforms-3/dd0c94d33606cd3ab83a61ee6628b223/transformed/jetified-godot-lib.debug/AndroidManifest.xml:2:1-27:12
 MERGED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:2:1-20:12
+MERGED from [GodotPlayGamesServices.release.aar] /home/bruno/.gradle/caches/transforms-3/4e7be50a41c134ed838daad4412626ea/transformed/jetified-GodotPlayGamesServices.release/AndroidManifest.xml:2:1-19:12
+MERGED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:17:1-40:12
 MERGED from [com.google.android.gms:play-services-ads:21.3.0] /home/bruno/.gradle/caches/transforms-3/3b957de8ab8f522bf405a7efe9b33ffd/transformed/jetified-play-services-ads-21.3.0/AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-ads-lite:21.3.0] /home/bruno/.gradle/caches/transforms-3/853af8095451625f5e4cee6fb85b2ce9/transformed/jetified-play-services-ads-lite-21.3.0/AndroidManifest.xml:17:1-67:12
 MERGED from [com.google.android.ump:user-messaging-platform:2.0.0] /home/bruno/.gradle/caches/transforms-3/9ded48df9047564e96a1bf1edef67dba/transformed/jetified-user-messaging-platform-2.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-games:20.0.1] /home/bruno/.gradle/caches/transforms-3/c65e082b4f13bfbbeeb6e1d84ba11c31/transformed/jetified-play-services-games-20.0.1/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-ads-base:21.3.0] /home/bruno/.gradle/caches/transforms-3/39c54fde3e195466483335340eb79e0c/transformed/jetified-play-services-ads-base-21.3.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/bruno/.gradle/caches/transforms-3/71b741c31b029b404875729772f8b881/transformed/jetified-play-services-ads-identifier-18.0.0/AndroidManifest.xml:17:1-27:12
 MERGED from [com.google.android.gms:play-services-appset:16.0.1] /home/bruno/.gradle/caches/transforms-3/4d7b668674e9d388853d14b65ed38773/transformed/jetified-play-services-appset-16.0.1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] /home/bruno/.gradle/caches/transforms-3/f87a8c34076f85cfa5080d96428a7c4e/transformed/jetified-play-services-drive-17.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.0.0] /home/bruno/.gradle/caches/transforms-3/17167cc7774554c612baf572c5eec86b/transformed/jetified-play-services-auth-api-phone-17.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] /home/bruno/.gradle/caches/transforms-3/cefbf15cef1fb92205797ea3db325922/transformed/jetified-play-services-auth-base-17.0.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-base:18.0.0] /home/bruno/.gradle/caches/transforms-3/ff6d2f45ffbdaa7f9acc2191114b1811/transformed/jetified-play-services-base-18.0.0/AndroidManifest.xml:16:1-24:12
 MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /home/bruno/.gradle/caches/transforms-3/b8e87ac9cd11d27659f6e47661826309/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /home/bruno/.gradle/caches/transforms-3/b6fa8abec73fc6485abe966923de1689/transformed/jetified-play-services-measurement-sdk-api-20.1.2/AndroidManifest.xml:17:1-28:12
@@ -91,21 +97,29 @@ ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCo
 	android:required
 		ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:21:9-32
 application
-ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:30:5-103:19
-MERGED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:30:5-103:19
-MERGED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:30:5-103:19
+ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:30:5-110:19
+MERGED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:30:5-110:19
+MERGED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:30:5-110:19
 MERGED from [godot-lib.debug.aar] /home/bruno/.gradle/caches/transforms-3/dd0c94d33606cd3ab83a61ee6628b223/transformed/jetified-godot-lib.debug/AndroidManifest.xml:11:5-25:19
 MERGED from [godot-lib.debug.aar] /home/bruno/.gradle/caches/transforms-3/dd0c94d33606cd3ab83a61ee6628b223/transformed/jetified-godot-lib.debug/AndroidManifest.xml:11:5-25:19
 MERGED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:11:5-18:19
 MERGED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:11:5-18:19
+MERGED from [GodotPlayGamesServices.release.aar] /home/bruno/.gradle/caches/transforms-3/4e7be50a41c134ed838daad4412626ea/transformed/jetified-GodotPlayGamesServices.release/AndroidManifest.xml:13:5-17:19
+MERGED from [GodotPlayGamesServices.release.aar] /home/bruno/.gradle/caches/transforms-3/4e7be50a41c134ed838daad4412626ea/transformed/jetified-GodotPlayGamesServices.release/AndroidManifest.xml:13:5-17:19
+MERGED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.android.gms:play-services-ads-lite:21.3.0] /home/bruno/.gradle/caches/transforms-3/853af8095451625f5e4cee6fb85b2ce9/transformed/jetified-play-services-ads-lite-21.3.0/AndroidManifest.xml:46:5-65:19
 MERGED from [com.google.android.gms:play-services-ads-lite:21.3.0] /home/bruno/.gradle/caches/transforms-3/853af8095451625f5e4cee6fb85b2ce9/transformed/jetified-play-services-ads-lite-21.3.0/AndroidManifest.xml:46:5-65:19
+MERGED from [com.google.android.gms:play-services-games:20.0.1] /home/bruno/.gradle/caches/transforms-3/c65e082b4f13bfbbeeb6e1d84ba11c31/transformed/jetified-play-services-games-20.0.1/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-games:20.0.1] /home/bruno/.gradle/caches/transforms-3/c65e082b4f13bfbbeeb6e1d84ba11c31/transformed/jetified-play-services-games-20.0.1/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-ads-base:21.3.0] /home/bruno/.gradle/caches/transforms-3/39c54fde3e195466483335340eb79e0c/transformed/jetified-play-services-ads-base-21.3.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-ads-base:21.3.0] /home/bruno/.gradle/caches/transforms-3/39c54fde3e195466483335340eb79e0c/transformed/jetified-play-services-ads-base-21.3.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/bruno/.gradle/caches/transforms-3/71b741c31b029b404875729772f8b881/transformed/jetified-play-services-ads-identifier-18.0.0/AndroidManifest.xml:25:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/bruno/.gradle/caches/transforms-3/71b741c31b029b404875729772f8b881/transformed/jetified-play-services-ads-identifier-18.0.0/AndroidManifest.xml:25:5-20
 MERGED from [com.google.android.gms:play-services-appset:16.0.1] /home/bruno/.gradle/caches/transforms-3/4d7b668674e9d388853d14b65ed38773/transformed/jetified-play-services-appset-16.0.1/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-appset:16.0.1] /home/bruno/.gradle/caches/transforms-3/4d7b668674e9d388853d14b65ed38773/transformed/jetified-play-services-appset-16.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] /home/bruno/.gradle/caches/transforms-3/f87a8c34076f85cfa5080d96428a7c4e/transformed/jetified-play-services-drive-17.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] /home/bruno/.gradle/caches/transforms-3/f87a8c34076f85cfa5080d96428a7c4e/transformed/jetified-play-services-drive-17.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-base:18.0.0] /home/bruno/.gradle/caches/transforms-3/ff6d2f45ffbdaa7f9acc2191114b1811/transformed/jetified-play-services-base-18.0.0/AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-base:18.0.0] /home/bruno/.gradle/caches/transforms-3/ff6d2f45ffbdaa7f9acc2191114b1811/transformed/jetified-play-services-base-18.0.0/AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /home/bruno/.gradle/caches/transforms-3/b8e87ac9cd11d27659f6e47661826309/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:5:5-20
@@ -248,6 +262,20 @@ MERGED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d6
 		ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:95:13-67
 	android:name
 		ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:94:13-69
+meta-data#com.google.android.gms.games.APP_ID
+ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:98:9-99:46
+	android:value
+		ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:99:13-43
+	android:name
+		ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:98:20-70
+meta-data#com.google.android.gms.version
+ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:101:9-102:68
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] /home/bruno/.gradle/caches/transforms-3/ce1a4a168e9eb728eb8ef3571af82a31/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] /home/bruno/.gradle/caches/transforms-3/ce1a4a168e9eb728eb8ef3571af82a31/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+	android:value
+		ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:102:13-66
+	android:name
+		ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:101:20-65
 uses-sdk
 INJECTED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml
@@ -256,18 +284,30 @@ MERGED from [godot-lib.debug.aar] /home/bruno/.gradle/caches/transforms-3/dd0c94
 MERGED from [godot-lib.debug.aar] /home/bruno/.gradle/caches/transforms-3/dd0c94d33606cd3ab83a61ee6628b223/transformed/jetified-godot-lib.debug/AndroidManifest.xml:7:5-9:41
 MERGED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:5:5-7:41
 MERGED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:5:5-7:41
+MERGED from [GodotPlayGamesServices.release.aar] /home/bruno/.gradle/caches/transforms-3/4e7be50a41c134ed838daad4412626ea/transformed/jetified-GodotPlayGamesServices.release/AndroidManifest.xml:7:5-9:41
+MERGED from [GodotPlayGamesServices.release.aar] /home/bruno/.gradle/caches/transforms-3/4e7be50a41c134ed838daad4412626ea/transformed/jetified-GodotPlayGamesServices.release/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads:21.3.0] /home/bruno/.gradle/caches/transforms-3/3b957de8ab8f522bf405a7efe9b33ffd/transformed/jetified-play-services-ads-21.3.0/AndroidManifest.xml:21:5-23:52
 MERGED from [com.google.android.gms:play-services-ads:21.3.0] /home/bruno/.gradle/caches/transforms-3/3b957de8ab8f522bf405a7efe9b33ffd/transformed/jetified-play-services-ads-21.3.0/AndroidManifest.xml:21:5-23:52
 MERGED from [com.google.android.gms:play-services-ads-lite:21.3.0] /home/bruno/.gradle/caches/transforms-3/853af8095451625f5e4cee6fb85b2ce9/transformed/jetified-play-services-ads-lite-21.3.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-lite:21.3.0] /home/bruno/.gradle/caches/transforms-3/853af8095451625f5e4cee6fb85b2ce9/transformed/jetified-play-services-ads-lite-21.3.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.ump:user-messaging-platform:2.0.0] /home/bruno/.gradle/caches/transforms-3/9ded48df9047564e96a1bf1edef67dba/transformed/jetified-user-messaging-platform-2.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.ump:user-messaging-platform:2.0.0] /home/bruno/.gradle/caches/transforms-3/9ded48df9047564e96a1bf1edef67dba/transformed/jetified-user-messaging-platform-2.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-games:20.0.1] /home/bruno/.gradle/caches/transforms-3/c65e082b4f13bfbbeeb6e1d84ba11c31/transformed/jetified-play-services-games-20.0.1/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-games:20.0.1] /home/bruno/.gradle/caches/transforms-3/c65e082b4f13bfbbeeb6e1d84ba11c31/transformed/jetified-play-services-games-20.0.1/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-base:21.3.0] /home/bruno/.gradle/caches/transforms-3/39c54fde3e195466483335340eb79e0c/transformed/jetified-play-services-ads-base-21.3.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-ads-base:21.3.0] /home/bruno/.gradle/caches/transforms-3/39c54fde3e195466483335340eb79e0c/transformed/jetified-play-services-ads-base-21.3.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/bruno/.gradle/caches/transforms-3/71b741c31b029b404875729772f8b881/transformed/jetified-play-services-ads-identifier-18.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/bruno/.gradle/caches/transforms-3/71b741c31b029b404875729772f8b881/transformed/jetified-play-services-ads-identifier-18.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-appset:16.0.1] /home/bruno/.gradle/caches/transforms-3/4d7b668674e9d388853d14b65ed38773/transformed/jetified-play-services-appset-16.0.1/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-appset:16.0.1] /home/bruno/.gradle/caches/transforms-3/4d7b668674e9d388853d14b65ed38773/transformed/jetified-play-services-appset-16.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] /home/bruno/.gradle/caches/transforms-3/f87a8c34076f85cfa5080d96428a7c4e/transformed/jetified-play-services-drive-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-drive:17.0.0] /home/bruno/.gradle/caches/transforms-3/f87a8c34076f85cfa5080d96428a7c4e/transformed/jetified-play-services-drive-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.0.0] /home/bruno/.gradle/caches/transforms-3/17167cc7774554c612baf572c5eec86b/transformed/jetified-play-services-auth-api-phone-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.0.0] /home/bruno/.gradle/caches/transforms-3/17167cc7774554c612baf572c5eec86b/transformed/jetified-play-services-auth-api-phone-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] /home/bruno/.gradle/caches/transforms-3/cefbf15cef1fb92205797ea3db325922/transformed/jetified-play-services-auth-base-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] /home/bruno/.gradle/caches/transforms-3/cefbf15cef1fb92205797ea3db325922/transformed/jetified-play-services-auth-base-17.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-base:18.0.0] /home/bruno/.gradle/caches/transforms-3/ff6d2f45ffbdaa7f9acc2191114b1811/transformed/jetified-play-services-base-18.0.0/AndroidManifest.xml:18:5-43
 MERGED from [com.google.android.gms:play-services-base:18.0.0] /home/bruno/.gradle/caches/transforms-3/ff6d2f45ffbdaa7f9acc2191114b1811/transformed/jetified-play-services-base-18.0.0/AndroidManifest.xml:18:5-43
 MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /home/bruno/.gradle/caches/transforms-3/b8e87ac9cd11d27659f6e47661826309/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:4:5-43
@@ -340,6 +380,8 @@ uses-permission#android.permission.INTERNET
 ADDED from /media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:10:5-67
 MERGED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:9:5-67
 MERGED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:9:5-67
+MERGED from [GodotPlayGamesServices.release.aar] /home/bruno/.gradle/caches/transforms-3/4e7be50a41c134ed838daad4412626ea/transformed/jetified-GodotPlayGamesServices.release/AndroidManifest.xml:11:5-67
+MERGED from [GodotPlayGamesServices.release.aar] /home/bruno/.gradle/caches/transforms-3/4e7be50a41c134ed838daad4412626ea/transformed/jetified-GodotPlayGamesServices.release/AndroidManifest.xml:11:5-67
 MERGED from [com.google.android.gms:play-services-ads-lite:21.3.0] /home/bruno/.gradle/caches/transforms-3/853af8095451625f5e4cee6fb85b2ce9/transformed/jetified-play-services-ads-lite-21.3.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-ads-lite:21.3.0] /home/bruno/.gradle/caches/transforms-3/853af8095451625f5e4cee6fb85b2ce9/transformed/jetified-play-services-ads-lite-21.3.0/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /home/bruno/.gradle/caches/transforms-3/b6fa8abec73fc6485abe966923de1689/transformed/jetified-play-services-measurement-sdk-api-20.1.2/AndroidManifest.xml:23:5-67
@@ -372,6 +414,32 @@ ADDED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69
 		ADDED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:14:13-50
 	android:name
 		ADDED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:13:13-59
+meta-data#org.godotengine.plugin.v1.GodotPlayGamesServices
+ADDED from [GodotPlayGamesServices.release.aar] /home/bruno/.gradle/caches/transforms-3/4e7be50a41c134ed838daad4412626ea/transformed/jetified-GodotPlayGamesServices.release/AndroidManifest.xml:14:9-16:74
+	android:value
+		ADDED from [GodotPlayGamesServices.release.aar] /home/bruno/.gradle/caches/transforms-3/4e7be50a41c134ed838daad4412626ea/transformed/jetified-GodotPlayGamesServices.release/AndroidManifest.xml:16:13-71
+	android:name
+		ADDED from [GodotPlayGamesServices.release.aar] /home/bruno/.gradle/caches/transforms-3/4e7be50a41c134ed838daad4412626ea/transformed/jetified-GodotPlayGamesServices.release/AndroidManifest.xml:15:13-76
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:33:9-37:51
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:35:13-36
+	android:visibleToInstantApps
+		ADDED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:37:13-48
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:36:13-107
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:18.1.0] /home/bruno/.gradle/caches/transforms-3/d144cf77feee5232c5959cbae7c8a906/transformed/jetified-play-services-auth-18.1.0/AndroidManifest.xml:34:13-89
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.android.gms:play-services-ads-lite:21.3.0] /home/bruno/.gradle/caches/transforms-3/853af8095451625f5e4cee6fb85b2ce9/transformed/jetified-play-services-ads-lite-21.3.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /home/bruno/.gradle/caches/transforms-3/b6fa8abec73fc6485abe966923de1689/transformed/jetified-play-services-measurement-sdk-api-20.1.2/AndroidManifest.xml:24:5-79
@@ -452,12 +520,6 @@ MERGED from [androidx.work:work-runtime:2.7.0] /home/bruno/.gradle/caches/transf
 MERGED from [androidx.work:work-runtime:2.7.0] /home/bruno/.gradle/caches/transforms-3/ae268974631f3c27a5d5a49167282e68/transformed/work-runtime-2.7.0/AndroidManifest.xml:25:5-68
 	android:name
 		ADDED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /home/bruno/.gradle/caches/transforms-3/b6fa8abec73fc6485abe966923de1689/transformed/jetified-play-services-measurement-sdk-api-20.1.2/AndroidManifest.xml:25:22-65
-meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:18.0.0] /home/bruno/.gradle/caches/transforms-3/ce1a4a168e9eb728eb8ef3571af82a31/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
-	android:value
-		ADDED from [com.google.android.gms:play-services-basement:18.0.0] /home/bruno/.gradle/caches/transforms-3/ce1a4a168e9eb728eb8ef3571af82a31/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
-	android:name
-		ADDED from [com.google.android.gms:play-services-basement:18.0.0] /home/bruno/.gradle/caches/transforms-3/ce1a4a168e9eb728eb8ef3571af82a31/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
 ADDED from [androidx.work:work-runtime:2.7.0] /home/bruno/.gradle/caches/transforms-3/ae268974631f3c27a5d5a49167282e68/transformed/work-runtime-2.7.0/AndroidManifest.xml:27:5-81
 	android:name

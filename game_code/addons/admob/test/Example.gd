@@ -24,6 +24,9 @@ func _add_text_Advice_Node(text_value : String) -> void:
 func _ready() -> void:
 	BannerPosition.pressed = MobileAds.AdMobSettings.config.banner.position
 	RespectSafeArea.pressed = MobileAds.AdMobSettings.config.banner.respect_safe_area
+	
+	if Engine.has_singleton("GodotPlayGamesServices"):
+		print(Engine.get_singleton("GodotPlayGamesServices"))
 
 	OS.center_window()
 	for banner_size in MobileAds.AdMobSettings.BANNER_SIZE:

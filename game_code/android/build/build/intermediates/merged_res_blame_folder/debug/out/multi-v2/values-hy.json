@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.godot.game-mergeDebugResources-18:/values-hy/values-hy.xml",
+            "outputFile": "com.godot.game-mergeDebugResources-19:/values-hy/values-hy.xml",
             "map": [
                 {
                     "source": "/home/bruno/.gradle/caches/transforms-3/84bc507719e348d7b70b4f1cfee234c2/transformed/browser-1.4.0/res/values-hy/values-hy.xml",

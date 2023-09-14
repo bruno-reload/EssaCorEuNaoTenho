@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.godot.game-mergeDebugResources-18:/values-ky/values-ky.xml",
+            "outputFile": "com.godot.game-mergeDebugResources-19:/values-ky/values-ky.xml",
             "map": [
                 {
                     "source": "/home/bruno/.gradle/caches/transforms-3/ff6d2f45ffbdaa7f9acc2191114b1811/transformed/jetified-play-services-base-18.0.0/res/values-ky/values.xml",
