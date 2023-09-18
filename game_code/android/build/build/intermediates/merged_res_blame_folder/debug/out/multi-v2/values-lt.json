@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.godot.game-mergeDebugResources-19:/values-lt/values-lt.xml",
+            "outputFile": "com.godot.game-mergeDebugResources-18:/values-lt/values-lt.xml",
             "map": [
                 {
                     "source": "/home/bruno/.gradle/caches/transforms-3/ce1a4a168e9eb728eb8ef3571af82a31/transformed/jetified-play-services-basement-18.0.0/res/values-lt/values.xml",
@@ -38,6 +38,23 @@
                     }
                 },
                 {
+                    "source": "/media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/res/values-lt/godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "68",
+                        "endOffsets": "179"
+                    },
+                    "to": {
+                        "startLines": "24",
+                        "startColumns": "4",
+                        "startOffsets": "2751",
+                        "endColumns": "71",
+                        "endOffsets": "2818"
+                    }
+                },
+                {
                     "source": "/home/bruno/.gradle/caches/transforms-3/3b957de8ab8f522bf405a7efe9b33ffd/transformed/jetified-play-services-ads-21.3.0/res/values-lt/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17",
@@ -52,23 +69,6 @@
                         "startOffsets": "2823,2916,3031,3088,3196,3256,3368,3462,3510,3597,3636,3675,3733,3809",
                         "endColumns": "92,114,56,107,59,111,93,47,86,38,38,57,75,51",
                         "endOffsets": "2911,3026,3083,3191,3251,3363,3457,3505,3592,3631,3670,3728,3804,3856"
-                    }
-                },
-                {
-                    "source": "/media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/res/values-lt/godot_project_name_string.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "1",
-                        "startOffsets": "112",
-                        "endColumns": "68",
-                        "endOffsets": "179"
-                    },
-                    "to": {
-                        "startLines": "24",
-                        "startColumns": "4",
-                        "startOffsets": "2751",
-                        "endColumns": "71",
-                        "endOffsets": "2818"
                     }
                 },
                 {

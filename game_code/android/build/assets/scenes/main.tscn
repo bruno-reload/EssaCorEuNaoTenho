@@ -45,6 +45,25 @@ func _process(delta):
 [sub_resource type="GDScript" id=13]
 script/source = "extends VBoxContainer
 
+var play_services
+
+func _ready():
+	if Engine.has_singleton(\"GodotPlayGamesServices\"):
+		play_services = Engine.get_singleton(\"GodotPlayGamesServices\")
+		
+		var show_popups := true
+		var request_email := true
+		var request_profile := true
+		  #The client id must be created in [the google console](https://console.cloud.google.com/apis/credentials), an OAuth 2.0 Client credentials of a Web application type
+		var request_token := \"557801245987-stiah22s0212ij1uvutenf6er1a1qvum.apps.googleusercontent.com\"
+
+		play_services.init(show_popups, request_email, request_profile, request_token)
+
+func _on_sign_in_success(user_profile):
+	print(user_profile)
+
+func _on_sign_in_failed(error):
+	print(\"Error \" + str(error))
 "
 
 [node name="main" type="Node"]
@@ -69,7 +88,7 @@ transform = Transform( 1, 0, 0, 0, 0.999296, 0.0375158, 0, -0.0375158, 0.999296,
 script = SubResource( 12 )
 
 [node name="Camera" type="Camera" parent="scene"]
-transform = Transform( 1, 0, 0, 0, 0.999296, 0.0375158, 0, -0.0375158, 0.999296, 9.53674e-07, 10.8558, 18.4461 )
+transform = Transform( 1, 0, 0, 0, 0.997345, -0.0728204, 0, 0.0728204, 0.997345, 9.53674e-07, 8.3404, 18.4461 )
 size = 40.0
 
 [node name="Obstacle" parent="scene" groups=["obstacle"] instance=ExtResource( 3 )]
@@ -133,39 +152,3 @@ margin_right = 121.0
 margin_bottom = 96.0
 mouse_filter = 2
 script = SubResource( 13 )
-
-[node name="banner" type="Button" parent="Control2/VBoxContainer"]
-margin_right = 242.0
-margin_bottom = 45.0
-rect_min_size = Vector2( 45, 45 )
-size_flags_horizontal = 3
-text = "Banner"
-
-[node name="intersticial" type="Button" parent="Control2/VBoxContainer"]
-margin_top = 49.0
-margin_right = 242.0
-margin_bottom = 94.0
-rect_min_size = Vector2( 45, 45 )
-size_flags_horizontal = 3
-text = "intersticial"
-
-[node name="rewarded" type="Button" parent="Control2/VBoxContainer"]
-margin_top = 98.0
-margin_right = 242.0
-margin_bottom = 143.0
-rect_min_size = Vector2( 45, 45 )
-size_flags_horizontal = 3
-text = "rewarded"
-
-[node name="rewardedIntersticial" type="Button" parent="Control2/VBoxContainer"]
-margin_top = 147.0
-margin_right = 242.0
-margin_bottom = 192.0
-rect_min_size = Vector2( 45, 45 )
-size_flags_horizontal = 3
-text = "r intersticial video"
-
-[node name="Label" type="Label" parent="Control2/VBoxContainer"]
-margin_top = 196.0
-margin_right = 242.0
-margin_bottom = 210.0

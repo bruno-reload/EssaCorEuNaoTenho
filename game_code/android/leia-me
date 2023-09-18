@@ -1,3 +1,0 @@
-alguns pugins deve ser alterados quando o jogo estiver em release exemplo disso o playservice -> https://github.com/finepointcgi/PGSGP
-
-já o adbmob ele veio com um pacode release e um debug acredito que deva apenas alterar o aquivo .gdap a terceira linha para release ou debug  dependendo da cituação, eu nunca fiz isso e desde o começo ele já estava funcionando em debug por conta de uma opção marcad na interface que vem com o plugin

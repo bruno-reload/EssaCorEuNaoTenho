@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.godot.game-mergeDebugResources-19:/values-it/values-it.xml",
+            "outputFile": "com.godot.game-mergeDebugResources-18:/values-it/values-it.xml",
             "map": [
                 {
                     "source": "/home/bruno/.gradle/caches/transforms-3/84bc507719e348d7b70b4f1cfee234c2/transformed/browser-1.4.0/res/values-it/values-it.xml",
@@ -89,7 +89,7 @@
                     }
                 },
                 {
-                    "source": "/media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/res/values-it/godot_project_name_string.xml",
+                    "source": "/media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/res/values-it/godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",

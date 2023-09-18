@@ -1,13 +1,10 @@
-#Thu Sep 14 08:16:00 BRT 2023
-path.3=classes2.dex
+#Sun Sep 17 16:44:55 BRT 2023
+base.2=/media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/build/intermediates/dex/debug/mergeProjectDexDebug/6/classes.dex
 path.2=6/classes.dex
+base.1=/media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
 path.1=0/classes.dex
-path.0=classes.dex
-base.3=/media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
-base.2=/media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/build/intermediates/dex/debug/mergeProjectDexDebug/6/classes.dex
-base.1=/media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.0=/media/bruno/18af7648-b34b-4cdb-81ac-4a19cb1b4670/programa/git/EssaCorEuNaoTenho/game_code/android/build/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-renamed.3=classes4.dex
+base.0=/media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
+path.0=classes.dex

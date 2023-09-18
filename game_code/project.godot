@@ -30,6 +30,10 @@ _global_script_class_icons={
 "SpawnCoordinator": ""
 }
 
+[ControlScenes]
+
+loadScreem="res://scenes/Load.tscn"
+
 [admob]
 
 config={
@@ -92,13 +96,14 @@ config={
 [application]
 
 config/name="EssaCorEuNaoTenho"
-run/main_scene="res://addons/admob/test/Example.tscn"
+run/main_scene="res://scenes/test/main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 GameParam="*res://scripts/game_param.gd"
 MobileAds="*res://addons/admob/src/singletons/MobileAds.gd"
+ControlScenes="*res://scripts/controlScenes.gd"
 
 [display]
 
