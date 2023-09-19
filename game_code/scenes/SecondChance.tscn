@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://resourses/Rectangle 6.png" type="Texture" id=1]
+[ext_resource path="res://resourses/load.tres" type="DynamicFont" id=2]
+[ext_resource path="res://resourses/botao-play.png" type="Texture" id=3]
+[ext_resource path="res://resourses/Rectangle 85.png" type="Texture" id=4]
+[ext_resource path="res://resourses/Rectangle 78.png" type="Texture" id=5]
+[ext_resource path="res://resourses/theme.tres" type="Theme" id=6]
+
+[node name="SevondChance" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 480.0
+margin_bottom = 800.0
+custom_constants/margin_top = 50
+
+[node name="TextureRect" type="PanelContainer" parent="MarginContainer"]
+margin_top = 50.0
+margin_right = 480.0
+margin_bottom = 800.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+margin_right = 480.0
+margin_bottom = 800.0
+custom_constants/margin_right = 40
+custom_constants/margin_left = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+margin_left = 40.0
+margin_right = 440.0
+margin_bottom = 800.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 74.0
+custom_constants/margin_top = 20
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer2"]
+margin_top = 20.0
+margin_right = 400.0
+margin_bottom = 74.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0.537255, 0.819608, 0.854902, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+custom_fonts/font = ExtResource( 2 )
+text = "Revive"
+align = 1
+percent_visible = -0.166667
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="advertising" type="Button" parent="MarginContainer2/VBoxContainer"]
+margin_top = 78.0
+margin_right = 400.0
+margin_bottom = 198.0
+rect_min_size = Vector2( 120, 120 )
+icon = ExtResource( 3 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+margin_top = 202.0
+margin_right = 400.0
+margin_bottom = 312.0
+custom_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer"]
+margin_right = 400.0
+margin_bottom = 90.0
+alignment = 1
+
+[node name="map" type="Button" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 61.0
+margin_right = 151.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+icon = ExtResource( 5 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="store" type="Button" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 155.0
+margin_right = 245.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+icon = ExtResource( 1 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="reload" type="Button" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 249.0
+margin_right = 339.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+icon = ExtResource( 4 )
+flat = true
+icon_align = 1
+expand_icon = true

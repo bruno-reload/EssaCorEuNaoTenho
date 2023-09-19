@@ -46,9 +46,9 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] /home/bruno/.gradle/cache
 MERGED from [androidx.sqlite:sqlite-framework:2.1.0] /home/bruno/.gradle/caches/transforms-3/07488719514fbc6fe9e0f69458cb3895/transformed/sqlite-framework-2.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.sqlite:sqlite:2.1.0] /home/bruno/.gradle/caches/transforms-3/d6c7daee1f6fdee6d5277c1020333f22/transformed/sqlite-2.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/bruno/.gradle/caches/transforms-3/eec83ecb24b584e3a10b5e93e1de6e66/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
-INJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:2:1-27:12
-INJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:2:1-27:12
-INJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:2:1-27:12
+INJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:2:1-28:12
+INJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:2:1-28:12
+INJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:2:1-28:12
 	package
 		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:4:5-29
 		INJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml
@@ -139,7 +139,7 @@ MERGED from [androidx.room:room-runtime:2.2.5] /home/bruno/.gradle/caches/transf
 		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:30:68-95
 		REJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:30:68-95
 	tools:replace
-		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:15:9-123
+		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:16:9-123
 	android:isGame
 		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:30:96-117
 		REJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:30:96-117
@@ -150,7 +150,7 @@ meta-data#xr_mode_metadata_name
 ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:41:9-43:54
 REJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:41:9-43:54
 	tools:node
-		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:19:20-39
+		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:20:20-39
 	android:value
 		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:43:13-51
 	android:name
@@ -159,7 +159,7 @@ meta-data#xr_hand_tracking_metadata_name
 ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:48:9-50:62
 REJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:48:9-50:62
 	tools:node
-		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:21:20-39
+		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:22:20-39
 	android:value
 		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:50:13-60
 	android:name
@@ -168,7 +168,7 @@ meta-data#xr_hand_tracking_version_name
 ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:55:9-57:61
 REJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:55:9-57:61
 	tools:node
-		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:20:20-39
+		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:21:20-39
 	android:value
 		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:57:13-59
 	android:name
@@ -177,7 +177,7 @@ meta-data#com.oculus.supportedDevices
 ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:61:9-63:35
 REJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:61:9-63:35
 	tools:node
-		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:22:20-39
+		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:23:20-39
 	android:value
 		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:63:13-32
 	android:name
@@ -214,14 +214,14 @@ MERGED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/and
 		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:68:13-55
 		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:68:13-55
 	tools:replace
-		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:23:58-153
+		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:24:58-153
 	android:name
 		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:66:13-37
 meta-data#com.oculus.vr.focusaware
 ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:78:13-87
 REJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:78:13-87
 	tools:node
-		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:24:24-43
+		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:25:24-43
 	android:value
 		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml:78:64-84
 	android:name
@@ -328,6 +328,16 @@ INJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/a
 	android:minSdkVersion
 		INJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/AndroidManifest.xml
 		INJECTED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:10:5-67
+MERGED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:9:5-67
+MERGED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:9:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:21.3.0] /home/bruno/.gradle/caches/transforms-3/853af8095451625f5e4cee6fb85b2ce9/transformed/jetified-play-services-ads-lite-21.3.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:21.3.0] /home/bruno/.gradle/caches/transforms-3/853af8095451625f5e4cee6fb85b2ce9/transformed/jetified-play-services-ads-lite-21.3.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /home/bruno/.gradle/caches/transforms-3/b6fa8abec73fc6485abe966923de1689/transformed/jetified-play-services-measurement-sdk-api-20.1.2/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /home/bruno/.gradle/caches/transforms-3/b6fa8abec73fc6485abe966923de1689/transformed/jetified-play-services-measurement-sdk-api-20.1.2/AndroidManifest.xml:23:5-67
+	android:name
+		ADDED from /media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/src/debug/AndroidManifest.xml:10:22-64
 meta-data#org.godotengine.library.version
 ADDED from [godot-lib.debug.aar] /home/bruno/.gradle/caches/transforms-3/dd0c94d33606cd3ab83a61ee6628b223/transformed/jetified-godot-lib.debug/AndroidManifest.xml:14:9-16:44
 	android:value
@@ -348,14 +358,6 @@ ADDED from [godot-lib.debug.aar] /home/bruno/.gradle/caches/transforms-3/dd0c94d
 		ADDED from [godot-lib.debug.aar] /home/bruno/.gradle/caches/transforms-3/dd0c94d33606cd3ab83a61ee6628b223/transformed/jetified-godot-lib.debug/AndroidManifest.xml:24:13-72
 	android:name
 		ADDED from [godot-lib.debug.aar] /home/bruno/.gradle/caches/transforms-3/dd0c94d33606cd3ab83a61ee6628b223/transformed/jetified-godot-lib.debug/AndroidManifest.xml:21:13-70
-uses-permission#android.permission.INTERNET
-ADDED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:9:5-67
-MERGED from [com.google.android.gms:play-services-ads-lite:21.3.0] /home/bruno/.gradle/caches/transforms-3/853af8095451625f5e4cee6fb85b2ce9/transformed/jetified-play-services-ads-lite-21.3.0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-ads-lite:21.3.0] /home/bruno/.gradle/caches/transforms-3/853af8095451625f5e4cee6fb85b2ce9/transformed/jetified-play-services-ads-lite-21.3.0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /home/bruno/.gradle/caches/transforms-3/b6fa8abec73fc6485abe966923de1689/transformed/jetified-play-services-measurement-sdk-api-20.1.2/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /home/bruno/.gradle/caches/transforms-3/b6fa8abec73fc6485abe966923de1689/transformed/jetified-play-services-measurement-sdk-api-20.1.2/AndroidManifest.xml:23:5-67
-	android:name
-		ADDED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:9:22-64
 meta-data#org.godotengine.plugin.v1.AdMob
 ADDED from [admob-release.aar] /home/bruno/.gradle/caches/transforms-3/e25095d69cef0dcb045d7b7638305149/transformed/jetified-admob-release/AndroidManifest.xml:12:9-14:53
 	android:value

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/spawn_coordinator.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://scenes/prefabs/road.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/prefabs/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/prefabs/collectable.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/prefabs/house.tscn" type="PackedScene" id=7]
+[ext_resource path="res://resourses/load.tres" type="DynamicFont" id=8]
+[ext_resource path="res://scenes/SecondChance.tscn" type="PackedScene" id=9]
 
 [sub_resource type="GDScript" id=14]
 script/source = "extends Node
@@ -70,6 +73,24 @@ func _on_sign_in_failed(error):
 
 [node name="scene" type="Spatial" parent="."]
 
+[node name="RootNode" parent="scene" instance=ExtResource( 7 )]
+transform = Transform( 0.684814, 0, 0.728718, 0, 1, 0, -0.728718, 0, 0.684814, -4.46875, -0.291968, -13.8961 )
+
+[node name="RootNode2" parent="scene" instance=ExtResource( 7 )]
+transform = Transform( 0.61299, 0, -0.790091, 0, 1, 0, 0.790091, 0, 0.61299, 8.01732, -0.291968, -25.1124 )
+
+[node name="RootNode3" parent="scene" instance=ExtResource( 7 )]
+transform = Transform( 0.61299, 0, -0.790091, 0, 1, 0, 0.790091, 0, 0.61299, 12.6731, -0.291968, -17.0705 )
+
+[node name="RootNode4" parent="scene" instance=ExtResource( 7 )]
+transform = Transform( -0.765831, 0, -0.643042, 0, 1, 0, 0.643042, 0, -0.765831, 14.1545, -0.291968, -6.70075 )
+
+[node name="RootNode5" parent="scene" instance=ExtResource( 7 )]
+transform = Transform( 0.657402, 0, -0.75354, 0, 1, 0, 0.75354, 0, 0.657402, 16.6941, -0.291968, 2.39927 )
+
+[node name="RootNode6" parent="scene" instance=ExtResource( 7 )]
+transform = Transform( 0.023333, 0, 0.999728, 0, 1, 0, -0.999728, 0, 0.023333, -10.1827, -0.291968, -1.19841 )
+
 [node name="SpawnCoordinator" type="Spatial" parent="scene"]
 script = ExtResource( 1 )
 
@@ -99,7 +120,7 @@ sp = NodePath("../SpawnCoordinator")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="scene"]
-transform = Transform( -0.0219022, 0.71703, -0.696698, 0, 0.696865, 0.717202, 0.99976, 0.0157083, -0.0152629, 0, -2.4379, 0 )
+transform = Transform( 0.945257, 0.234043, -0.227406, -0.0279136, 0.752301, 0.658228, 0.325131, -0.615847, 0.717651, 0, -2.4379, 0 )
 shadow_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
 
 [node name="Control" type="Control" parent="."]
@@ -113,8 +134,36 @@ margin_top = 14.0
 margin_right = 47.0
 margin_bottom = 28.0
 rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/font = ExtResource( 8 )
 text = "sdfs"
 script = SubResource( 3 )
+
+[node name="UI" type="Control" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="Control/UI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -49.5
+margin_top = -278.0
+margin_right = 49.5
+margin_bottom = -182.0
+text = "active pop-up"
+
+[node name="SevondChance" parent="Control/UI" instance=ExtResource( 9 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -179.0
+margin_top = -156.0
+margin_right = 179.0
+margin_bottom = 156.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
@@ -128,6 +177,9 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ParallaxBackground/Control"]
 anchor_right = 1.0
@@ -140,6 +192,9 @@ expand = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control2"]
 anchor_left = 0.5
@@ -152,3 +207,5 @@ margin_right = 121.0
 margin_bottom = 96.0
 mouse_filter = 2
 script = SubResource( 13 )
+
+[connection signal="button_down" from="Control/UI/Button" to="Control/UI/SevondChance" method="show"]
