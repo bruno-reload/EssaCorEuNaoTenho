@@ -1,62 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://import/fonts/toon_cats/Toon Cats.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://resourses/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/load.gd" type="Script" id=2]
-
-[sub_resource type="DynamicFont" id=2]
-size = 39
-outline_size = 2
-outline_color = Color( 0.0235294, 0.12549, 0.341176, 1 )
-use_filter = true
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=3]
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.521569, 0.619608, 0.956863, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.254902, 0.0235294, 0.192157, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 2.0
-expand_margin_right = 2.0
-expand_margin_top = 2.0
-expand_margin_bottom = 2.0
-shadow_color = Color( 0.317647, 0.168627, 0.380392, 0.219608 )
-shadow_size = 8
-shadow_offset = Vector2( 4, 4 )
-
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.917647, 0.760784, 0.941176, 1 )
-border_width_left = 1
-border_width_right = 10
-border_color = Color( 0.92549, 0.956863, 0.921569, 1 )
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="Theme" id=6]
-ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
-ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
-ProgressBar/fonts/font = SubResource( 3 )
-ProgressBar/styles/bg = SubResource( 4 )
-ProgressBar/styles/fg = SubResource( 5 )
+[ext_resource path="res://resourses/fonts/load.tres" type="DynamicFont" id=3]
 
 [node name="Load" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-delay = 5.0
+delay = 0.0
 
 [node name="background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -72,17 +24,18 @@ margin_bottom = 492.0
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/TitleSpace"]
-margin_left = 86.0
-margin_top = 206.0
-margin_right = 393.0
-margin_bottom = 285.0
+margin_left = 24.0
+margin_top = 190.0
+margin_right = 455.0
+margin_bottom = 301.0
 custom_colors/font_color = Color( 0.537255, 0.819608, 0.854902, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
 custom_constants/shadow_offset_y = 4
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 text = "Essa Cor Eu
  Nao Tenho"
+align = 1
 
 [node name="LoadBarSpace" type="CenterContainer" parent="VBoxContainer"]
 margin_top = 496.0
@@ -96,7 +49,7 @@ margin_top = 52.0
 margin_right = 390.0
 margin_bottom = 97.0
 rect_min_size = Vector2( 300, 45 )
-theme = SubResource( 6 )
+theme = ExtResource( 1 )
 max_value = 1.0
 
 [node name="AdsensSpace" type="CenterContainer" parent="VBoxContainer"]

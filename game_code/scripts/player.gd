@@ -89,6 +89,3 @@ func move_right():
 
 func slide():
 	pass
-
-
-

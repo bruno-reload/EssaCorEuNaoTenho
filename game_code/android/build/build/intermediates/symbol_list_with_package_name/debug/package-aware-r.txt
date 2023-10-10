@@ -253,7 +253,6 @@ mipmap icon
 mipmap icon_background
 mipmap icon_foreground
 string androidx_startup
-string app_id
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
 string common_google_play_services_enable_title
@@ -351,4 +350,5 @@ styleable GradientColor android_startColor android_endColor android_type android
 styleable GradientColorItem android_color android_offset
 styleable LoadingImageView circleCrop imageAspectRatio imageAspectRatioAdjust
 styleable SignInButton buttonSize colorScheme scopeUris
+xml godot_provider_paths
 xml image_share_filepaths

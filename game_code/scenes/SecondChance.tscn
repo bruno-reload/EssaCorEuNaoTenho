@@ -1,0 +1,138 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resourses/ui/icons/Rectangle 24.png" type="Texture" id=1]
+[ext_resource path="res://resourses/fonts/load.tres" type="DynamicFont" id=2]
+[ext_resource path="res://resourses/ui/icons/Rectangle 25.png" type="Texture" id=3]
+[ext_resource path="res://resourses/theme/theme.tres" type="Theme" id=6]
+
+[node name="SevondChance" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 480.0
+margin_bottom = 800.0
+custom_constants/margin_top = 50
+
+[node name="TextureRect" type="PanelContainer" parent="MarginContainer"]
+margin_top = 50.0
+margin_right = 480.0
+margin_bottom = 800.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+margin_right = 480.0
+margin_bottom = 800.0
+custom_constants/margin_right = 40
+custom_constants/margin_left = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+margin_left = 40.0
+margin_right = 440.0
+margin_bottom = 800.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 74.0
+custom_constants/margin_top = 20
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer2"]
+margin_top = 20.0
+margin_right = 400.0
+margin_bottom = 74.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 0.537255, 0.819608, 0.854902, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+custom_fonts/font = ExtResource( 2 )
+text = "Revive"
+align = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="advertising" type="Button" parent="MarginContainer2/VBoxContainer"]
+margin_top = 78.0
+margin_right = 400.0
+margin_bottom = 198.0
+rect_min_size = Vector2( 120, 120 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+margin_top = 202.0
+margin_right = 400.0
+margin_bottom = 296.0
+custom_constants/margin_top = 20
+custom_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer3"]
+margin_top = 20.0
+margin_right = 400.0
+margin_bottom = 74.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer3/HBoxContainer"]
+margin_right = 198.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2/VBoxContainer/MarginContainer3/HBoxContainer/HBoxContainer"]
+margin_right = 45.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 45, 45 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer3/HBoxContainer/HBoxContainer"]
+margin_left = 49.0
+margin_right = 198.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "10"
+align = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer3/HBoxContainer"]
+margin_left = 202.0
+margin_right = 400.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2/VBoxContainer/MarginContainer3/HBoxContainer/HBoxContainer2"]
+margin_right = 45.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 45, 45 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer3/HBoxContainer/HBoxContainer2"]
+margin_left = 49.0
+margin_right = 198.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "2"
+align = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+margin_top = 300.0
+margin_right = 400.0
+margin_bottom = 340.0
+custom_constants/margin_right = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer2/VBoxContainer/MarginContainer"]
+margin_left = 20.0
+margin_right = 380.0
+margin_bottom = 20.0
+theme = ExtResource( 6 )
