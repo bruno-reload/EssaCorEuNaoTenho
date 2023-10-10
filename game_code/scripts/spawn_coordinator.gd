@@ -5,12 +5,12 @@ const column = 2
 
 onready var timer = $Timer
 
-export(float) var street_gap :float = 3.0 setget set_street_gap, get_street_gap
-export(float) var level_gap :float = 5.0 setget set_level_gap, get_level_gap
-
-export(NodePath) var center :NodePath
+var street_gap :float = 3.0 setget set_street_gap, get_street_gap
+var level_gap :float = 5.0 setget set_level_gap, get_level_gap
 
 var list :Array = [] setget set_list, get_list
+var h_list :Array = [] setget set_h_list, get_h_list
+
 var position :Vector3 = Vector3.ZERO
 var target :Node = null
 
@@ -19,11 +19,10 @@ var index :int = 0
 func _ready():
 	for j in range(0, line * 2 + 1):
 		for i in range(-column, column + 1):
-			list.append(Vector3(i * street_gap , j * level_gap  , transform.origin.z))
+			list.append(Vector3(i * street_gap , j * level_gap  + transform.origin.y, transform.origin.z))
 	
 	new_object()
 	
-	target = get_node_or_null(center)
 	timer.wait_time = v_time(level_gap, GameParam.gravity) + h_time(GameParam.speed, street_gap)
 	timer.connect("timeout", self, "new_object")
 
@@ -32,6 +31,12 @@ func set_list(var value :Array):
 	pass
 
 func get_list():
+	return null
+# warning-ignore:unused_argument
+func set_h_list(var value :Array):
+	pass
+
+func get_h_list():
 	return null
 
 # warning-ignore:unused_argument
@@ -52,6 +57,9 @@ func random_position() -> Vector3:
 	position = list[index]
 	index = (index + 1) % list.size()
 	return position
+
+func step_random_position():
+	position = h_list[index]
 
 func new_object():
 	randomize()

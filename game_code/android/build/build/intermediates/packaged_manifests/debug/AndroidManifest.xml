@@ -7,7 +7,7 @@
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="32" />
+        android:targetSdkVersion="33" />
 
     <supports-screens
         android:largeScreens="true"
@@ -79,10 +79,10 @@
         <!-- Records the version of the Godot editor used for building -->
         <meta-data
             android:name="org.godotengine.editor.version"
-            android:value="3.5.2.stable" /> <!-- Records the version of the Godot library -->
+            android:value="3.5.3.stable" /> <!-- Records the version of the Godot library -->
         <meta-data
             android:name="org.godotengine.library.version"
-            android:value="3.5.2.stable" />
+            android:value="3.5.3.stable" />
 
         <service android:name="org.godotengine.godot.GodotDownloaderService" />
 
@@ -91,6 +91,16 @@
             android:exported="false"
             android:process=":phoenix"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="io.itch.jumpstepstudio.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/godot_provider_paths" />
+        </provider>
 
         <meta-data
             android:name="org.godotengine.plugin.v1.AdMob"

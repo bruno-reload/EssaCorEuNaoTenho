@@ -9,15 +9,30 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "Animal",
+"language": "GDScript",
+"path": "res://resourses/animals/animal.gd"
+}, {
+"base": "Spatial",
+"class": "Collectable",
+"language": "GDScript",
+"path": "res://scripts/collectable.gd"
+}, {
 "base": "StaticBody",
 "class": "Obstacle",
 "language": "GDScript",
-"path": "res://scripts/obstacle.tres.gd"
+"path": "res://scripts/obstacle.gd"
 }, {
 "base": "KinematicBody",
 "class": "Player",
 "language": "GDScript",
 "path": "res://scripts/player.gd"
+}, {
+"base": "Reference",
+"class": "SpawnAnimals",
+"language": "GDScript",
+"path": "res://scripts/spawn_animals.gd"
 }, {
 "base": "Spatial",
 "class": "SpawnCoordinator",
@@ -25,8 +40,11 @@ _global_script_classes=[ {
 "path": "res://scripts/spawn_coordinator.gd"
 } ]
 _global_script_class_icons={
+"Animal": "",
+"Collectable": "",
 "Obstacle": "",
 "Player": "",
+"SpawnAnimals": "",
 "SpawnCoordinator": ""
 }
 
@@ -96,14 +114,15 @@ config={
 [application]
 
 config/name="EssaCorEuNaoTenho"
-run/main_scene="res://scenes/test/main.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 GameParam="*res://scripts/game_param.gd"
 MobileAds="*res://addons/admob/src/singletons/MobileAds.gd"
-ControlScenes="*res://scripts/controlScenes.gd"
+ControlScenes="*res://scripts/control_scenes.gd"
+Pool="*res://scripts/pool.gd"
 
 [display]
 
@@ -140,5 +159,6 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
+vram_compression/import_s3tc=false
 vram_compression/import_etc=true
 quality/filters/msaa=1

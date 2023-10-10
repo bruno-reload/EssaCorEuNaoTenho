@@ -1,38 +1,57 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/spawn_coordinator.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://scenes/prefabs/obstacle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/spawn_animals.gd" type="Script" id=3]
 [ext_resource path="res://scenes/prefabs/road.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/prefabs/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/prefabs/collectable.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/prefabs/house.tscn" type="PackedScene" id=7]
-[ext_resource path="res://resourses/load.tres" type="DynamicFont" id=8]
+[ext_resource path="res://scenes/prefabs/coin.tscn" type="PackedScene" id=7]
+[ext_resource path="res://resourses/fonts/load.tres" type="DynamicFont" id=8]
 [ext_resource path="res://scenes/SecondChance.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/prefabs/Obstacle.tscn" type="PackedScene" id=10]
+[ext_resource path="res://import/mesh/cube.mesh" type="ArrayMesh" id=11]
+[ext_resource path="res://import/mesh/house.mesh" type="ArrayMesh" id=12]
+[ext_resource path="res://import/mesh/floor.mesh" type="ArrayMesh" id=13]
+[ext_resource path="res://import/sprites/snapedit_1696822957611.jpg" type="Texture" id=14]
 
-[sub_resource type="GDScript" id=14]
+[sub_resource type="Environment" id=16]
+background_mode = 4
+background_color = Color( 0.811765, 0.882353, 1, 1 )
+fog_enabled = true
+
+[sub_resource type="GDScript" id=15]
 script/source = "extends Node
 
-var tiktok_plugin
+export(PackedScene) var coin :PackedScene
+const MAX_COINS :int = 2
+const key :String = \"coins\"
 
 func _ready():
-	if Engine.has_singleton(\"TikTokPlugin\"):
-		tiktok_plugin = Engine.get_singleton(\"tiktok_plugin\")
-		print(tiktok_plugin.getMessage())
-		tiktok_plugin.connect(\"signal\",self,\"on_tiktok_signal\")
+	Pool.new_list(key)
+	for i in range(0, MAX_COINS):
+		var e = coin.instance()
+		e.name = key + str(i)
+		Pool.add(key, e)
 
-func on_tiktok_signal(var msg: String):
-	print(\"sinal recebido \" + msg)
-"
+func sprayed():
+#	aqui eu vou fazer o posicionamento das moedas
+	pass
 
-[sub_resource type="GDScript" id=12]
-script/source = "extends Area
-
-func _ready():
-	connect(\"body_entered\",self,\"collect\")
-
-func collect(var body :Node):
-	hide()
+func add_in_line():
+	var obj = Pool.release(key)
+	if obj == null:
+		print(\"foi\" + str(Pool.lists[key].size()))
+		var e = coin.instance()
+		e.name = key + str(Pool.lists[key].size())
+		Pool.add(key, e)
+		obj = Pool.release(key)
+	if obj.get_parent() == null:
+		add_child(obj)
+	
+	obj.initial_state()
+	obj.show()
+	
 "
 
 [sub_resource type="GDScript" id=3]
@@ -43,85 +62,92 @@ func _process(delta):
 	set_text(str(Engine.get_frames_per_second()))
 "
 
-[sub_resource type="Environment" id=4]
+[sub_resource type="GDScript" id=14]
+script/source = "extends Node
 
-[sub_resource type="GDScript" id=13]
-script/source = "extends VBoxContainer
 
-var play_services
+export(NodePath) var spawnCoordinator
+export(int) var level :int = 0
+export(Resource) var packageIcons
 
 func _ready():
-	if Engine.has_singleton(\"GodotPlayGamesServices\"):
-		play_services = Engine.get_singleton(\"GodotPlayGamesServices\")
-		
-		var show_popups := true
-		var request_email := true
-		var request_profile := true
-		  #The client id must be created in [the google console](https://console.cloud.google.com/apis/credentials), an OAuth 2.0 Client credentials of a Web application type
-		var request_token := \"557801245987-stiah22s0212ij1uvutenf6er1a1qvum.apps.googleusercontent.com\"
+	spawnCoordinator = get_node_or_null(spawnCoordinator)
 
-		play_services.init(show_popups, request_email, request_profile, request_token)
 
-func _on_sign_in_success(user_profile):
-	print(user_profile)
-
-func _on_sign_in_failed(error):
-	print(\"Error \" + str(error))
 "
 
 [node name="main" type="Node"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 16 )
+
 [node name="scene" type="Spatial" parent="."]
 
-[node name="RootNode" parent="scene" instance=ExtResource( 7 )]
-transform = Transform( 0.684814, 0, 0.728718, 0, 1, 0, -0.728718, 0, 0.684814, -4.46875, -0.291968, -13.8961 )
-
-[node name="RootNode2" parent="scene" instance=ExtResource( 7 )]
-transform = Transform( 0.61299, 0, -0.790091, 0, 1, 0, 0.790091, 0, 0.61299, 8.01732, -0.291968, -25.1124 )
-
-[node name="RootNode3" parent="scene" instance=ExtResource( 7 )]
-transform = Transform( 0.61299, 0, -0.790091, 0, 1, 0, 0.790091, 0, 0.61299, 12.6731, -0.291968, -17.0705 )
-
-[node name="RootNode4" parent="scene" instance=ExtResource( 7 )]
-transform = Transform( -0.765831, 0, -0.643042, 0, 1, 0, 0.643042, 0, -0.765831, 14.1545, -0.291968, -6.70075 )
-
-[node name="RootNode5" parent="scene" instance=ExtResource( 7 )]
-transform = Transform( 0.657402, 0, -0.75354, 0, 1, 0, 0.75354, 0, 0.657402, 16.6941, -0.291968, 2.39927 )
-
-[node name="RootNode6" parent="scene" instance=ExtResource( 7 )]
-transform = Transform( 0.023333, 0, 0.999728, 0, 1, 0, -0.999728, 0, 0.023333, -10.1827, -0.291968, -1.19841 )
+[node name="Camera1" type="InterpolatedCamera" parent="scene"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.23365, 16.1027 )
+current = true
+size = 0.224
+target = NodePath("../Player/Spatial")
+speed = 10.0
+enabled = true
 
 [node name="SpawnCoordinator" type="Spatial" parent="scene"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -63.481 )
 script = ExtResource( 1 )
 
 [node name="Timer" type="Timer" parent="scene/SpawnCoordinator"]
 autostart = true
 
-[node name="Node" type="Node" parent="scene/SpawnCoordinator"]
-script = SubResource( 14 )
-
 [node name="Player" parent="scene" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.83533, 0 )
 sp = NodePath("../SpawnCoordinator")
 
-[node name="collectable" parent="scene" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 0.999296, 0.0375158, 0, -0.0375158, 0.999296, 0, 10.069, 0 )
-script = SubResource( 12 )
+[node name="Spatial" type="Spatial" parent="scene/Player"]
+transform = Transform( 1, 0, 0, 0, 0.966493, 0.256694, 0, -0.256694, 0.966493, 0, 10.7756, 11.9635 )
 
-[node name="Camera" type="Camera" parent="scene"]
-transform = Transform( 1, 0, 0, 0, 0.997345, -0.0728204, 0, 0.0728204, 0.997345, 9.53674e-07, 8.3404, 18.4461 )
-size = 40.0
+[node name="SpawnerCoins" type="Spatial" parent="scene"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23.6708 )
+script = SubResource( 15 )
+coin = ExtResource( 7 )
 
-[node name="Obstacle" parent="scene" groups=["obstacle"] instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.7331 )
-sp = NodePath("../SpawnCoordinator")
+[node name="Timer" type="Timer" parent="scene/SpawnerCoins"]
+wait_time = 0.2
+autostart = true
 
-[node name="road" parent="scene" instance=ExtResource( 4 )]
+[node name="SpanerLevel" type="Spatial" parent="scene"]
+
+[node name="Obstacle" parent="scene" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7965, 0.5, -12.8473 )
+spawnerCoordinate = NodePath("../SpawnCoordinator")
+
+[node name="Road" parent="scene" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="scene"]
 transform = Transform( 0.945257, 0.234043, -0.227406, -0.0279136, 0.752301, 0.658228, 0.325131, -0.615847, 0.717651, 0, -2.4379, 0 )
-shadow_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+directional_shadow_mode = 1
+
+[node name="SpawnAnimals" type="Node" parent="scene"]
+script = ExtResource( 3 )
+spawnCoordinate = NodePath("../SpawnCoordinator")
+animals = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="scene/SpawnAnimals"]
+
+[node name="house" type="Spatial" parent="scene"]
+transform = Transform( 0.688684, 0, 0.725062, 0, 1, 0, -0.725062, 0, 0.688684, -9.76971, -2.69757, -7.94213 )
+
+[node name="cube" type="MeshInstance" parent="scene/house"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79162, 0 )
+mesh = ExtResource( 11 )
+
+[node name="floor" type="MeshInstance" parent="scene/house"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29738, 0 )
+mesh = ExtResource( 13 )
+
+[node name="house" type="MeshInstance" parent="scene/house"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.95621, 0 )
+mesh = ExtResource( 12 )
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -143,36 +169,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="Button" type="Button" parent="Control/UI"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -49.5
-margin_top = -278.0
-margin_right = 49.5
-margin_bottom = -182.0
-text = "active pop-up"
-
 [node name="SevondChance" parent="Control/UI" instance=ExtResource( 9 )]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -179.0
+margin_left = -206.0
 margin_top = -156.0
-margin_right = 179.0
-margin_bottom = 156.0
+margin_right = 206.0
+margin_bottom = 184.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 4 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
-
-[node name="Control" type="Control" parent="CanvasLayer/ParallaxBackground"]
+[node name="Control3" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -181,31 +189,25 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ParallaxBackground/Control"]
+[node name="TextureRect" type="TextureRect" parent="Control3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource( 2 )
 expand = true
 
-[node name="Control2" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="SpawnerCats" type="Node" parent="."]
+script = SubResource( 14 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control2"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -121.0
-margin_top = -96.0
-margin_right = 121.0
-margin_bottom = 96.0
-mouse_filter = 2
-script = SubResource( 13 )
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[connection signal="button_down" from="Control/UI/Button" to="Control/UI/SevondChance" method="show"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/ParallaxBackground"]
+position = Vector2( -189, -194 )
+scale = Vector2( 1.60742, 1.94141 )
+texture = ExtResource( 14 )
+centered = false
+
+[connection signal="timeout" from="scene/SpawnerCoins/Timer" to="scene/SpawnerCoins" method="add_in_line"]
+[connection signal="timeout" from="scene/SpawnAnimals/Timer" to="scene/SpawnAnimals" method="_on_timeout"]
