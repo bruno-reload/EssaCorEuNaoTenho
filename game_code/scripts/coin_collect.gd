@@ -27,6 +27,7 @@ func hide(camera = null):
 	.hide()
 
 func show():
+	feedback = false
 	$coin.show()
 	$shine.show()
 	.show()
@@ -38,8 +39,7 @@ func show():
 func initial_state():
 	$particle.hide()
 	transform.origin = Vector3.ZERO
-	feedback = false
-	show()
+	feedback = true
 
 func moviment_state(delta):
 	if not feedback:

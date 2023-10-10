@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/player.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "SpawnAnimals",
 "language": "GDScript",
 "path": "res://scripts/spawn_animals.gd"
