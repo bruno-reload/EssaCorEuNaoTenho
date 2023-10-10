@@ -39,6 +39,7 @@ func initial_state():
 	$particle.hide()
 	transform.origin = Vector3.ZERO
 	feedback = false
+	show()
 
 func moviment_state(delta):
 	if not feedback:

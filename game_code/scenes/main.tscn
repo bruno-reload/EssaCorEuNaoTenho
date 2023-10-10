@@ -28,29 +28,21 @@ const MAX_COINS :int = 2
 const key :String = \"coins\"
 
 func _ready():
-	Pool.new_list(key)
-	for i in range(0, MAX_COINS):
-		var e = coin.instance()
-		e.name = key + str(i)
-		Pool.add(key, e)
-
+	Pool.create_population(MAX_COINS, key, coin)
+	
 func sprayed():
 #	aqui eu vou fazer o posicionamento das moedas
 	pass
 
 func add_in_line():
 	var obj = Pool.release(key)
+
 	if obj == null:
-		print(\"foi\" + str(Pool.lists[key].size()))
-		var e = coin.instance()
-		e.name = key + str(Pool.lists[key].size())
-		Pool.add(key, e)
-		obj = Pool.release(key)
+		obj = Pool.objetct_factory(key)
 	if obj.get_parent() == null:
 		add_child(obj)
 	
 	obj.initial_state()
-	obj.show()
 	
 "
 
