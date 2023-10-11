@@ -6,5 +6,5 @@ func _ready():
 	visibilityNotifie.name = "notifie"
 	add_child(visibilityNotifie)
 	
-	visibilityNotifie.connect("camera_exited",self,"hide")
+	assert(not visibilityNotifie.connect("camera_exited",self,"hide"),"não foi possivel se conectar")
 

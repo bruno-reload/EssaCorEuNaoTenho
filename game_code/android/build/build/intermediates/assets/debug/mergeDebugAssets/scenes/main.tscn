@@ -75,7 +75,7 @@ environment = SubResource( 16 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.23365, 16.1027 )
 current = true
 size = 0.224
-far = 200.0
+far = 50.0
 
 [node name="SpawnCoordinator" type="Spatial" parent="scene"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -100 )
@@ -98,13 +98,13 @@ coin = ExtResource( 7 )
 spawner_coordinate = NodePath("../SpawnCoordinator")
 
 [node name="Timer" type="Timer" parent="scene/SpawnerCoins"]
-wait_time = 4.0
+wait_time = 3.0
 autostart = true
 
 [node name="SpanerLevel" type="Spatial" parent="scene"]
 
 [node name="Obstacle" parent="scene" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7965, 0.5, -12.8473 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7965, 0.5, -3.28188 )
 spawn_coordinator = NodePath("../SpawnCoordinator")
 
 [node name="Road" parent="scene" instance=ExtResource( 4 )]

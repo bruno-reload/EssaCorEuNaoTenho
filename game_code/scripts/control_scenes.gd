@@ -5,7 +5,7 @@ export(float) var time = 3
 var loadScreen  :Node
 
 func _ready():
-	MobileAds.connect("initialization_complete", self, "_on_MobileAds_initialization_complete")
+	assert(not MobileAds.connect("initialization_complete", self, "_on_MobileAds_initialization_complete"), "não foi possivel se conectar")
 	
 	loadScreen = load(ProjectSettings.get_setting("ControlScenes/loadScreem")).instance()
 	add_child(loadScreen)

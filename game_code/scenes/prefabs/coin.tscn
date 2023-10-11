@@ -10,7 +10,8 @@
 extents = Vector3( 0.5, 0.5, 0.5 )
 
 [sub_resource type="Animation" id=2]
-length = 0.001
+loop = true
+step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -18,10 +19,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0 ]
+"values": [ 0, 18 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -72,7 +73,7 @@ shape = SubResource( 1 )
 
 [node name="animation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../coin")
-autoplay = "rotation"
+autoplay = "RESET"
 method_call_mode = 1
 anims/RESET = SubResource( 2 )
 anims/rotation = SubResource( 3 )
@@ -82,8 +83,9 @@ pixel_size = 0.02
 billboard = 2
 double_sided = false
 texture = ExtResource( 1 )
-hframes = 5
+hframes = 8
 vframes = 4
+frame = 11
 
 [node name="shine" type="Sprite3D" parent="."]
 modulate = Color( 1, 0.866667, 0.25098, 1 )
@@ -100,12 +102,13 @@ bus = "itens"
 
 [node name="particle" type="CPUParticles" parent="."]
 emitting = false
+amount = 2
 lifetime = 0.6
 one_shot = true
 explosiveness = 0.8
 randomness = 1.0
 lifetime_randomness = 1.0
-fixed_fps = 15
+fixed_fps = 24
 local_coords = false
 mesh = SubResource( 5 )
 emission_shape = 1

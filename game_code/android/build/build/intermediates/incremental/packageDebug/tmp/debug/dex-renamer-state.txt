@@ -1,4 +1,4 @@
-#Wed Oct 11 08:34:14 BRT 2023
+#Wed Oct 11 09:47:37 BRT 2023
 base.2=/media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/build/intermediates/dex/debug/mergeProjectDexDebug/6/classes.dex
 path.2=6/classes.dex
 base.1=/media/bruno/linux_data/programa/git/EssaCorEuNaoTenho/game_code/android/build/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex

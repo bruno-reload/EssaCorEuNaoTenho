@@ -43,7 +43,7 @@ func handle_drag(event: InputEventScreenDrag):
 
 	pressed = false
 
-func _physics_process(var delta :float):
+func _process(delta):
 	if not h_moviment:
 		velocity = move_and_slide(velocity, Vector3.UP)
 		velocity.y += delta * GameParam.gravity
@@ -51,8 +51,6 @@ func _physics_process(var delta :float):
 		v_count = 0
 		h_count = 0
 		velocity.y = 0.0
-
-func _process(delta):
 	horizontal_moviment(delta)
 
 func jump():
@@ -61,6 +59,8 @@ func jump():
 		velocity.y = sqrt(2.0 * abs(GameParam.gravity) * jump_height)
 
 func horizontal_moviment(var delta :float) -> void:
+	if floor_entere:
+		return
 	h_moviment = false
 	var m_collide :KinematicCollision = null
 	if h_count < sp_node.column * 2 + 1 :
