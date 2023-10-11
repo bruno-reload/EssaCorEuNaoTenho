@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://resourses/animals/animal.gd"
 }, {
-"base": "Spatial",
+"base": "Area",
 "class": "Collectable",
 "language": "GDScript",
 "path": "res://scripts/collectable.gd"
