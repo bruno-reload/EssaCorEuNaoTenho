@@ -164,3 +164,4 @@ vram_compression/import_s3tc=false
 vram_compression/import_etc=true
 quality/directional_shadow/size.mobile=256
 quality/shadow_atlas/size.mobile=256
+quality/filters/msaa=1
