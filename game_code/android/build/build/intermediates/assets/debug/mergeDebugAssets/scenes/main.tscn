@@ -27,30 +27,33 @@ const MAX_COINS :int = 10
 const BATCH_SIZE = 10
 const key :String = \"coins\"
 var list :Array
-var last :Node
-var current :Node
 
 func _ready():
-	Pool.create_population(MAX_COINS, key, coin)
+	Pool.create_population(MAX_COINS, key, coin)	
 	spawner_coordinate = get_node_or_null(spawner_coordinate)
 	add_in_line()
 
+
 func sprayed():
 	var position = spawner_coordinate.random_position()
-	current.transform.origin = last.transform.origin + (GameParam.speed / 10) * Vector3.FORWARD
-	current.show()
+	for i in range(0, list.size()):
+		var distance = i * (GameParam.speed / 10)
+		list[i].transform.origin = position * 0 + Vector3.FORWARD * distance
+
+		list[i].show()
+	list.clear()
 
 func add_in_line():
-	last = current
-	
-	current = Pool.release(key)
-	if current == null:
-		current = Pool.objetct_factory(key)
-	if current.get_parent() == null:
-		add_child(current)
-	current.initial_state()
-	last = current
+	list.clear()
+	for i in range(0, BATCH_SIZE):
+		list.append(Pool.release(key)) 
+		if list[i] == null:
+			list[i] = Pool.objetct_factory(key)
+		if list[i].get_parent() == null:
+			add_child(list[i])
+		list[i].initial_state()
 	sprayed()
+
 "
 
 [sub_resource type="GDScript" id=3]
@@ -72,6 +75,7 @@ environment = SubResource( 16 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.23365, 16.1027 )
 current = true
 size = 0.224
+far = 200.0
 
 [node name="SpawnCoordinator" type="Spatial" parent="scene"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -100 )
@@ -94,7 +98,7 @@ coin = ExtResource( 7 )
 spawner_coordinate = NodePath("../SpawnCoordinator")
 
 [node name="Timer" type="Timer" parent="scene/SpawnerCoins"]
-wait_time = 0.2
+wait_time = 4.0
 autostart = true
 
 [node name="SpanerLevel" type="Spatial" parent="scene"]
@@ -117,7 +121,7 @@ animals = ExtResource( 6 )
 [node name="Timer" type="Timer" parent="scene/SpawnAnimals"]
 
 [node name="house" type="Spatial" parent="scene"]
-transform = Transform( 0.688684, 0, 0.725062, 0, 1, 0, -0.725062, 0, 0.688684, -9.76971, -2.69757, -7.94213 )
+transform = Transform( 0.688684, 0, 0.725062, 0, 1, 0, -0.725062, 0, 0.688684, -8.0876, -2.69757, -15.9181 )
 
 [node name="cube" type="MeshInstance" parent="scene/house"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79162, 0 )

@@ -87,7 +87,7 @@ vframes = 4
 
 [node name="shine" type="Sprite3D" parent="."]
 modulate = Color( 1, 0.866667, 0.25098, 1 )
-opacity = 0.47
+opacity = 0.14
 pixel_size = 0.1
 billboard = 1
 double_sided = false

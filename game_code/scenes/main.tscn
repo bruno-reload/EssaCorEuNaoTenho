@@ -23,8 +23,8 @@ script/source = "extends Node
 
 export(PackedScene) var coin :PackedScene
 export(NodePath) var spawner_coordinate
-const MAX_COINS :int = 20
-const BATCH_SIZE = 20
+const MAX_COINS :int = 10
+const BATCH_SIZE = 10
 const key :String = \"coins\"
 var list :Array
 
@@ -121,7 +121,7 @@ animals = ExtResource( 6 )
 [node name="Timer" type="Timer" parent="scene/SpawnAnimals"]
 
 [node name="house" type="Spatial" parent="scene"]
-transform = Transform( 0.688684, 0, 0.725062, 0, 1, 0, -0.725062, 0, 0.688684, -9.76971, -2.69757, -7.94213 )
+transform = Transform( 0.688684, 0, 0.725062, 0, 1, 0, -0.725062, 0, 0.688684, -8.0876, -2.69757, -15.9181 )
 
 [node name="cube" type="MeshInstance" parent="scene/house"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79162, 0 )
