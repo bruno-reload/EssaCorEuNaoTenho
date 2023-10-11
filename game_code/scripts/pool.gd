@@ -3,11 +3,28 @@ extends Node
 var position :int = 0
 var lists :Dictionary
 var inside :Dictionary 
+var buffer :Dictionary
 
 
 func add(key :String, value):
 	inside[key].append(true)
 	lists[key].append(value)
+
+func create_population(valeu :int, key :String, target :PackedScene):
+	var node = target.instance()
+	assert(not buffer.has(key), "já exite um grupo de itens com esse nome, modifique o nome para algo diferente.")
+	
+	create_buffer(key, node)
+	for i in range(0, valeu):
+		var e = buffer[key].duplicate()
+		e.name = key + str(i)
+		add(key, e)
+
+func objetct_factory(key :String):
+	var e = buffer[key].duplicate()
+	e.name = key + str(lists[key].size())
+	add(key, e)
+	return release(key)
 
 func remove(key :String, value):
 	if lists[key].has(value):
@@ -28,7 +45,9 @@ func release(key):
 		return null
 	return lists[key][index]
 
-func new_list(key :String):
+func create_buffer(key :String, target :Node):
 	inside = {key:[]}
 	lists = {key:[]}
+
+	buffer = {key: target}
 
